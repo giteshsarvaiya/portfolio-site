@@ -1,18 +1,20 @@
-// Theme toggle
+// Theme toggle (guarded so script works on pages that don't have the button)
 const themeToggle = document.getElementById("themeToggle");
-themeToggle.addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", newTheme);
-  localStorage.setItem("data-theme", newTheme);
-  themeToggle.textContent = newTheme === "dark" ? "Light" : "Dark";
-});
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("data-theme", newTheme);
+    themeToggle.textContent = newTheme === "dark" ? "Light" : "Dark";
+  });
+}
 
 // Apply saved theme on page load
 document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("data-theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
-  themeToggle.textContent = savedTheme === "dark" ? "Light" : "Dark";
+  if (themeToggle) themeToggle.textContent = savedTheme === "dark" ? "Light" : "Dark";
 });
 
 // Scroll progress bar + back to top
