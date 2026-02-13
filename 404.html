@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Gitesh Sarvaiya" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>404 — Gitesh Sarvaiya</title>
+  <link rel="stylesheet" href="/reset.css" />
+  <link rel="stylesheet" href="/index.css" />
+</head>
+<body>
+  <table class="header">
+    <tbody class="text-left">
+      <tr class="width-auto">
+        <td colspan="4" class="text-left">
+          <h1 class="title text-left">404</h1>
+          <p class="subtitle text-left block margin-0">
+            page not found<span id="cursor">|</span>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<hr/>
+<pre>
+  $ curl giteshsarvaiya.co/this-page
+
+  HTTP/1.1 404 Not Found
+  Content-Type: text/plain
+
+  the page you're looking for
+  doesn't exist. maybe it was
+  deleted, maybe it never was.
+
+  either way, here's what does exist:
+</pre>
+
+<hr/>
+<h2>Try these instead</h2>
+<ul class="incremental">
+  <li><a href="/">Home</a> — the main page, everything about me</li>
+  <li><a href="/blogs">Blog</a> — system design, fullstack, React, cloud</li>
+  <li><a href="/youtube">YouTube</a> — building in public</li>
+</ul>
+
+<hr/>
+<p style="text-align: center; margin-top: 8px;">or just go <a href="/">home</a></p>
+
+<hr/>
+<p style="text-align: center; margin-top: 8px">
+  (reach out on <a href="https://x.com/SarvaiyaGitesh">X</a>,
+  <a href="https://github.com/giteshsarvaiya">github</a>,
+  <a href="https://www.linkedin.com/in/gitesh-sarvaiya-160b921b3/">LinkedIn</a>,
+  or <a href="mailto:gitesh.sarvaiya28@gmail.com">email</a> — let's
+  talk systems, design, and engineering)
+</p>
+<hr/>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <button class="back-to-top" id="backToTop">Top</button>
+  <button class="theme-toggle-fixed" id="themeToggle">Light</button>
+
+  <div class="debug-grid"></div>
+  <script src="/index.js"></script>
+</body>
+</html>

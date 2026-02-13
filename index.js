@@ -1,52 +1,44 @@
+// Theme toggle
 const themeToggle = document.getElementById("themeToggle");
 themeToggle.addEventListener("click", () => {
   const currentTheme = document.documentElement.getAttribute("data-theme");
   const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-  // Apply the new theme and save it to localStorage
   document.documentElement.setAttribute("data-theme", newTheme);
   localStorage.setItem("data-theme", newTheme);
-  // Update button text
   themeToggle.textContent = newTheme === "dark" ? "Light" : "Dark";
 });
 
 // Apply saved theme on page load
 document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme") || "light";
+  const savedTheme = localStorage.getItem("data-theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
-
   themeToggle.textContent = savedTheme === "dark" ? "Light" : "Dark";
 });
 
- 
-//   function themeToggle(){
-//   // Select the toggle button
-// const themeToggle = document.getElementById("theme-toggle");
+// Scroll progress bar + back to top
+const scrollProgress = document.getElementById("scrollProgress");
+const backToTop = document.getElementById("backToTop");
 
-// // Apply the saved theme on page load
-// document.documentElement.setAttribute(
-//   "data-theme",
-//   localStorage.getItem("theme") || "light"
-// );
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
 
-// // Update button text based on the current theme
-// // themeToggle.textContent =
-// //   document.documentElement.getAttribute("data-theme") === "dark"
-// //     ? "Switch to Light Mode"
-// //     : "Switch to Dark Mode";
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
 
-// // Toggle dark/light mode
-// themeToggle.addEventListener("click", () => {
-//   const currentTheme = document.documentElement.getAttribute("data-theme");
-//   const newTheme = currentTheme === "dark" ? "light" : "dark";
+  if (scrollProgress) {
+    scrollProgress.style.width = percent + "%";
+  }
 
-//   // Apply the new theme and save it to localStorage
-//   document.documentElement.setAttribute("data-theme", newTheme);
-//   localStorage.setItem("theme", newTheme);
-
-//   // Update button text
-//   themeToggle.textContent =
-//     newTheme === "dark" ? "Light" : "Dark";
-// });
-
-// }
+  if (backToTop) {
+    if (scrollTop > 300) {
+      backToTop.classList.add("visible");
+    } else {
+      backToTop.classList.remove("visible");
+    }
+  }
+});
