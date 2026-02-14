@@ -57,6 +57,7 @@
                             <div class="nav-right">
                                 <a href="/blogs">blog</a>
                                 <a href="/youtube">youtube</a>
+                                <button id="terminalToggle" class="terminal-btn">>_</button>
                             </div>
                         </div>
                     </td>
@@ -154,8 +155,8 @@
   │       │                    │                    │            │
   │       ▼                    ▼                    ▼            │
   │  ┌──────────┐        ┌──────────┐        ┌──────────┐       │
-  │  │  DESIGN  │        │  SYSTEM  │        │ FULLSTACK│       │
-  │  │ ENGINEER │───────►│ THINKER  │───────►│ ENGINEER │       │
+  │  │  <span class="diagram-box" data-target="detail-design">DESIGN</span>  │        │  <span class="diagram-box" data-target="detail-system">SYSTEM</span>  │        │ <span class="diagram-box" data-target="detail-fullstack">FULLSTACK</span>│       │
+  │  │ <span class="diagram-box" data-target="detail-design">ENGINEER</span> │───────►│ <span class="diagram-box" data-target="detail-system">THINKER</span>  │───────►│ <span class="diagram-box" data-target="detail-fullstack">ENGINEER</span> │       │
   │  └──────────┘        └──────────┘        └──────────┘       │
   │       │                    │                    │            │
   │  · talk to users     · db schemas         · frontend        │
@@ -183,7 +184,7 @@
  ├─────────────────────────┤
  │                         │
  │  ┌───────────────────┐  │
- │  │  DESIGN ENGINEER  │  │
+ │  │  <span class="diagram-box" data-target="detail-design">DESIGN ENGINEER</span>  │  │
  │  └────────┬──────────┘  │
  │           ▼             │
  │  · talk to users        │
@@ -195,7 +196,7 @@
  │           │             │
  │           ▼             │
  │  ┌───────────────────┐  │
- │  │  SYSTEM THINKER   │  │
+ │  │  <span class="diagram-box" data-target="detail-system">SYSTEM THINKER</span>   │  │
  │  └────────┬──────────┘  │
  │           ▼             │
  │  · db schemas           │
@@ -206,7 +207,7 @@
  │           │             │
  │           ▼             │
  │  ┌───────────────────┐  │
- │  │ FULLSTACK ENGINEER│  │
+ │  │ <span class="diagram-box" data-target="detail-fullstack">FULLSTACK ENGINEER</span>│  │
  │  └────────┬──────────┘  │
  │           ▼             │
  │  · frontend + backend   │
@@ -222,7 +223,7 @@
  └─────────────────────────┘
 </pre
         >
-        <details open>
+        <details open id="detail-fullstack">
             <summary>Fullstack Engineer</summary>
             <p>
                 I own the entire stack. Frontend architecture, backend services,
@@ -231,7 +232,7 @@
                 and marketing sites on Cloudflare Workers + KV.
             </p>
         </details>
-        <details open>
+        <details open id="detail-design">
             <summary>Design Engineer</summary>
             <p>
                 I sit at the intersection of design and code. I don't just
@@ -240,7 +241,7 @@
                 states. The details that make software feel alive.
             </p>
         </details>
-        <details open>
+        <details open id="detail-system">
             <summary>System Thinker</summary>
             <p>
                 I think in systems, not features. Database schemas, CRDT
@@ -817,7 +818,31 @@
         <button class="back-to-top" id="backToTop">Top</button>
         <button class="theme-toggle-fixed" id="themeToggle">Light</button>
 
+        <!-- Terminal overlay -->
+        <div class="terminal-overlay" id="terminalOverlay">
+            <div class="terminal-window">
+                <div class="terminal-titlebar">
+                    <span>visitor@gitesh:~</span>
+                    <button id="terminalClose" class="terminal-close">x</button>
+                </div>
+                <pre class="terminal-output" id="terminalOutput"></pre>
+                <div class="terminal-input-line">
+                    <span class="terminal-prompt">$&nbsp;</span>
+                    <input
+                        type="text"
+                        id="terminalInput"
+                        class="terminal-input"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        placeholder="type a command..."
+                    />
+                </div>
+            </div>
+        </div>
+
         <div class="debug-grid"></div>
         <script src="/index.js"></script>
+        <script src="/terminal.js"></script>
     </body>
 </html>

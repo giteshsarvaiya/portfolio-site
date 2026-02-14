@@ -27,6 +27,18 @@ if (backToTop) {
   });
 }
 
+// Diagram box click-to-scroll
+document.querySelectorAll(".diagram-box").forEach((box) => {
+  box.addEventListener("click", () => {
+    var target = document.getElementById(box.dataset.target);
+    if (!target) return;
+    target.open = true;
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    target.classList.add("diagram-target-highlight");
+    setTimeout(() => target.classList.remove("diagram-target-highlight"), 1000);
+  });
+});
+
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;

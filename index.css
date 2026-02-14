@@ -184,10 +184,10 @@ body {
     display: none;
   }
   .diagram-mobile {
-    display: flex;
-    justify-content: center;
+    display: block;
     font-size: 0.7rem;
     overflow-x: auto;
+    text-align: center;
   }
 
   /* Details: tighter on mobile */
@@ -728,4 +728,166 @@ label input {
   font-size: 0.8rem;
   color: var(--text-color-alt);
   margin: 0;
+}
+
+/* ── Diagram interactive boxes ── */
+pre .diagram-box {
+  margin-top: 0;
+}
+.diagram-box {
+  cursor: pointer;
+  transition: text-shadow 0.2s;
+}
+.diagram-box:hover {
+  text-shadow: 0 0 8px var(--text-color), 0 0 16px var(--text-color);
+}
+
+/* ── Terminal toggle button ── */
+.terminal-btn {
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  height: auto;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ── Terminal overlay ── */
+.terminal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  margin: 0;
+}
+.terminal-overlay.active {
+  display: grid;
+}
+
+.terminal-window {
+  width: 90vw;
+  max-width: 80ch;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background-color);
+  border: var(--border-thickness) solid var(--text-color);
+  margin: 0;
+  overflow: hidden;
+}
+.terminal-window * {
+  margin-top: 0;
+}
+
+.terminal-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 1ch;
+  border-bottom: var(--border-thickness) solid var(--text-color);
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.terminal-close {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0 4px;
+  height: auto;
+  text-transform: lowercase;
+  color: var(--text-color);
+}
+.terminal-close:hover {
+  background: var(--background-color-alt);
+}
+
+.terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1ch;
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 0;
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  border-top: var(--border-thickness) solid var(--text-color);
+  padding: 4px 1ch;
+}
+
+.terminal-prompt {
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-medium);
+  white-space: pre;
+}
+
+.terminal-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 0.8rem;
+  padding: 0;
+  height: auto;
+  outline: none;
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+.terminal-input:focus {
+  --border-thickness: 2px;
+  outline: none;
+}
+
+/* ── Diagram highlight on scroll target ── */
+@keyframes diagram-highlight {
+  0% { border-color: var(--text-color); }
+  25% { border-color: var(--text-color-alt); }
+  50% { border-color: var(--text-color); }
+  75% { border-color: var(--text-color-alt); }
+  100% { border-color: var(--text-color); }
+}
+.diagram-target-highlight {
+  animation: diagram-highlight 1s ease;
+}
+
+/* ── Mobile overrides for terminal ── */
+@media screen and (max-width: 480px) {
+  .terminal-overlay.active {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 2vh;
+  }
+  .terminal-window {
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 96vh;
+    border-left: none;
+    border-right: none;
+  }
+  .terminal-output {
+    min-height: 100px;
+    max-height: none;
+    flex: 1;
+    font-size: 0.7rem;
+  }
+  .terminal-input,
+  .terminal-prompt {
+    font-size: 16px; /* prevents iOS zoom on focus */
+  }
+}
+
+/* Body scroll lock when terminal is open */
+body.terminal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
 }
