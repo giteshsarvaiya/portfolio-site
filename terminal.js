@@ -139,20 +139,15 @@
     neofetch: function () {
       var theme = document.documentElement.getAttribute("data-theme") || "light";
       return [
-        "   ┌─────────────┐",
-        "   │   ┌─────┐   │   visitor@gitesh",
-        "   │   │ G S │   │   ──────────────────────────",
-        "   │   └─────┘   │   Host:     giteshsarvaiya.xyz",
-        "   │  ┌───────┐  │   Role:     Fullstack Engineer",
-        "   │  │ > _ < │  │   Stack:    JS/TS · React · Node",
-        "   │  └───────┘  │   Editor:   Claude Code (Zed+Cursor)",
-        "   └─────────────┘   Shell:    portfolio-terminal v1.0",
-        "                     Theme:    " + theme,
-        "   gitesh sarvaiya",
-        "   ───────────────",
-        "   design engineer",
-        "   system thinker    Reading:  Refactoring UI, SDI Vol.1",
-        "   fullstack eng",
+        "  ┌───────┐",
+        "  │ G  S  │  visitor@gitesh",
+        "  │ > _ < │  ──────────────────",
+        "  └───────┘  Role:    Fullstack Engineer",
+        "             Stack:   JS/TS · React · Node",
+        "  gitesh     Editor:  Claude Code (Zed+Cursor)",
+        "  sarvaiya   Shell:   portfolio-terminal v1.0",
+        "             Theme:   " + theme,
+        "             Reading: Refactoring UI, SDI Vol.1",
       ].join("\n");
     },
 
