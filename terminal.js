@@ -138,11 +138,6 @@
 
     neofetch: function () {
       var theme = document.documentElement.getAttribute("data-theme") || "light";
-      var ua = navigator.userAgent;
-      var browser = /Firefox/i.test(ua) ? "Firefox" : /Edg/i.test(ua) ? "Edge" : /Chrome/i.test(ua) ? "Chrome" : /Safari/i.test(ua) ? "Safari" : "Unknown";
-      var os = /Win/i.test(ua) ? "Windows" : /Mac/i.test(ua) ? "macOS" : /Linux/i.test(ua) ? "Linux" : /Android/i.test(ua) ? "Android" : /iPhone|iPad/i.test(ua) ? "iOS" : "Unknown";
-      var w = window.innerWidth;
-      var device = w <= 480 ? "Mobile" : w <= 768 ? "Tablet" : "Desktop";
       return [
         "   ┌─────────────┐",
         "   │   ┌─────┐   │   visitor@gitesh",
@@ -153,11 +148,11 @@
         "   │  └───────┘  │   Editor:   Claude Code (Zed+Cursor)",
         "   └─────────────┘   Shell:    portfolio-terminal v1.0",
         "                     Theme:    " + theme,
-        "   gitesh sarvaiya    Browser:  " + browser + " on " + os,
-        "   ───────────────   Device:   " + device + " (" + w + "px)",
-        "   design engineer   Uptime:   since Sept 2024",
-        "   system thinker    Projects: 5 shipped",
-        "   fullstack eng     Reading:  Refactoring UI, SDI Vol.1",
+        "   gitesh sarvaiya",
+        "   ───────────────",
+        "   design engineer",
+        "   system thinker    Reading:  Refactoring UI, SDI Vol.1",
+        "   fullstack eng",
       ].join("\n");
     },
 
