@@ -1,5 +1,11 @@
 # Future Scope
 
+## Live visitor counter
+Using Cloudflare workers
+
+## Pixel Matrix with toggle-able pixels
+Using Cloudflare workers and KV
+
 ## WhatsApp CMS
 
 ### Concept
