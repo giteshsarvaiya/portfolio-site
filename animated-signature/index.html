@@ -292,6 +292,8 @@
             <button id="user-replay-btn" disabled>↺ replay</button>
             <button id="download-svg-btn" disabled>↓ svg</button>
             <button id="download-anim-svg-btn" disabled>↓ animated svg</button>
+            <button id="download-png-btn" disabled>↓ png</button>
+            <button id="download-video-btn" disabled>↓ video</button>
         </div>
 
         <hr />
@@ -399,6 +401,8 @@
             const downloadAnimSvgBtn = document.getElementById(
                 "download-anim-svg-btn",
             );
+            const downloadPngBtn = document.getElementById("download-png-btn");
+            const downloadVideoBtn = document.getElementById("download-video-btn");
 
             // Sync color picker with current theme on load
             colorPicker.value = hexFromRgb(getThemeColor()) || "#000000";
@@ -432,6 +436,8 @@
             function setDownloadsEnabled(enabled) {
                 downloadSvgBtn.disabled = !enabled;
                 downloadAnimSvgBtn.disabled = !enabled;
+                downloadPngBtn.disabled = !enabled;
+                downloadVideoBtn.disabled = !enabled;
             }
 
             function mountUserSignature() {
@@ -659,6 +665,178 @@
                     title: "Animated SVG Downloaded",
                     event: true,
                 });
+            });
+
+            // ── Download PNG ──────────────────────────────────────────────────────────
+
+            downloadPngBtn.addEventListener("click", () => {
+                const data = extractCleanSVG("user-sig-mount");
+                if (!data) return;
+
+                const { svgString, viewBox } = data;
+                const [, , vw, vh] = viewBox.split(" ").map(Number);
+                const scale = 2; // retina-quality
+
+                const canvas = document.createElement("canvas");
+                canvas.width = vw * scale;
+                canvas.height = vh * scale;
+                const ctx = canvas.getContext("2d");
+
+                const svgBlob = new Blob([svgString], {
+                    type: "image/svg+xml",
+                });
+                const svgUrl = URL.createObjectURL(svgBlob);
+                const img = new Image();
+
+                img.onload = () => {
+                    ctx.drawImage(img, 0, 0, vw * scale, vh * scale);
+                    URL.revokeObjectURL(svgUrl);
+
+                    canvas.toBlob((pngBlob) => {
+                        const filename =
+                            (currentName || "signature")
+                                .toLowerCase()
+                                .replace(/\s+/g, "-")
+                                .replace(/[^a-z0-9-]/g, "") +
+                            "-signature.png";
+                        const pngUrl = URL.createObjectURL(pngBlob);
+                        const a = document.createElement("a");
+                        a.href = pngUrl;
+                        a.download = filename;
+                        a.click();
+                        URL.revokeObjectURL(pngUrl);
+                        setStatus("png downloaded.");
+                        window.goatcounter?.count({
+                            path: "png-downloaded",
+                            title: "PNG Downloaded",
+                            event: true,
+                        });
+                    }, "image/png");
+                };
+
+                img.src = svgUrl;
+            });
+
+            // ── Download Video ────────────────────────────────────────────────────────
+
+            downloadVideoBtn.addEventListener("click", () => {
+                if (typeof MediaRecorder === "undefined" || !HTMLCanvasElement.prototype.captureStream) {
+                    setStatus("video recording not supported in this browser.");
+                    return;
+                }
+
+                const mount = document.getElementById("user-sig-mount");
+                const svg = mount.querySelector("svg");
+                if (!svg) return;
+
+                const inkPath =
+                    svg.querySelector("g[clip-path] path") ||
+                    svg.querySelector("g path") ||
+                    [...svg.querySelectorAll("path")].pop();
+                if (!inkPath) return;
+
+                const viewBox = svg.getAttribute("viewBox");
+                const [, , vw, vh] = viewBox.split(" ").map(Number);
+                const d = inkPath.getAttribute("d");
+                const color = mount.style.color || "#000000";
+                const duration = parseFloat(speedSlider.value) || 3;
+                const scale = 2;
+
+                const canvas = document.createElement("canvas");
+                canvas.width = vw * scale;
+                canvas.height = vh * scale;
+                const ctx = canvas.getContext("2d");
+                const path2d = new Path2D(d);
+
+                function easeInOutCubic(t) {
+                    return t < 0.5
+                        ? 4 * t * t * t
+                        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+
+                const mimeType = MediaRecorder.isTypeSupported(
+                    "video/webm;codecs=vp9",
+                )
+                    ? "video/webm;codecs=vp9"
+                    : "video/webm";
+
+                const stream = canvas.captureStream(60);
+                const recorder = new MediaRecorder(stream, { mimeType });
+                const chunks = [];
+
+                recorder.ondataavailable = (e) => {
+                    if (e.data.size > 0) chunks.push(e.data);
+                };
+
+                recorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: "video/webm" });
+                    const filename =
+                        (currentName || "signature")
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")
+                            .replace(/[^a-z0-9-]/g, "") + "-signature.webm";
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = filename;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    setStatus("video downloaded.");
+                    downloadVideoBtn.disabled = false;
+                    window.goatcounter?.count({
+                        path: "video-downloaded",
+                        title: "Video Downloaded",
+                        event: true,
+                    });
+                };
+
+                downloadVideoBtn.disabled = true;
+                setStatus("recording video...");
+                recorder.start();
+
+                const start = performance.now();
+                let holdStart = null;
+                const holdDuration = 0.8; // seconds to hold final frame
+
+                function drawFrame(now) {
+                    const elapsed = (now - start) / 1000;
+                    const rawProgress = Math.min(elapsed / duration, 1);
+                    const progress = easeInOutCubic(rawProgress);
+
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.save();
+                    ctx.scale(scale, scale);
+
+                    // Ghost path
+                    ctx.globalAlpha = 0.08;
+                    ctx.fillStyle = color;
+                    ctx.fill(path2d);
+
+                    // Animated reveal
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.rect(0, -9999, vw * progress, vh + 19998);
+                    ctx.clip();
+                    ctx.globalAlpha = 1;
+                    ctx.fillStyle = color;
+                    ctx.fill(path2d);
+                    ctx.restore();
+
+                    ctx.restore();
+
+                    if (rawProgress < 1) {
+                        requestAnimationFrame(drawFrame);
+                    } else {
+                        if (!holdStart) holdStart = now;
+                        if ((now - holdStart) / 1000 < holdDuration) {
+                            requestAnimationFrame(drawFrame);
+                        } else {
+                            recorder.stop();
+                        }
+                    }
+                }
+
+                requestAnimationFrame(drawFrame);
             });
         </script>
         <script
