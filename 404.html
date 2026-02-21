@@ -1,62 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="Gitesh Sarvaiya" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>404 — Gitesh Sarvaiya</title>
-  <link rel="stylesheet" href="/reset.css" />
-  <link rel="stylesheet" href="/index.css" />
-  <style>
-    .robot-wrap {
-      display: flex;
-      justify-content: center;
-      margin: 1.5rem 0;
-    }
-    .robot-ascii {
-      display: inline-block;
-      line-height: 1.5;
-      text-align: left;
-    }
-    .eye {
-      display: inline-block;
-      animation: eye-crash 4s ease-in-out infinite;
-    }
-    @keyframes eye-crash {
-      0%, 80%, 100% { opacity: 1; }
-      85%, 93%      { opacity: 0; }
-    }
-    .status-blink {
-      animation: status-pulse 1.6s ease-in-out infinite;
-    }
-    @keyframes status-pulse {
-      0%, 100% { opacity: 1; }
-      50%      { opacity: 0.25; }
-    }
-    .dim { opacity: 0.5; }
-    .bold { font-weight: var(--font-weight-bold); }
-    pre a { text-decoration: underline; }
-  </style>
-</head>
-<body>
-  <table class="header">
-    <tbody class="text-left">
-      <tr class="width-auto">
-        <td colspan="4" class="text-left">
-          <h1 class="title text-left">404</h1>
-          <p class="subtitle text-left block margin-0">
-            segmentation fault — core dumped<span id="cursor">|</span>
-          </p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=yes"
+        />
+        <meta name="author" content="Gitesh Sarvaiya" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <title>404 — Gitesh Sarvaiya</title>
+        <link rel="stylesheet" href="/reset.css" />
+        <link rel="stylesheet" href="/index.css" />
+        <style>
+            .robot-wrap {
+                display: flex;
+                justify-content: center;
+                margin: 1.5rem 0;
+            }
+            .robot-ascii {
+                display: inline-block;
+                line-height: 1.5;
+                text-align: left;
+            }
+            .eye {
+                display: inline-block;
+                animation: eye-crash 4s ease-in-out infinite;
+            }
+            @keyframes eye-crash {
+                0%,
+                80%,
+                100% {
+                    opacity: 1;
+                }
+                85%,
+                93% {
+                    opacity: 0;
+                }
+            }
+            .status-blink {
+                animation: status-pulse 1.6s ease-in-out infinite;
+            }
+            @keyframes status-pulse {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.25;
+                }
+            }
+            .dim {
+                opacity: 0.5;
+            }
+            .bold {
+                font-weight: var(--font-weight-bold);
+            }
+            pre a {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <table class="header">
+            <tbody class="text-left">
+                <tr class="width-auto">
+                    <td colspan="4" class="text-left">
+                        <h1 class="title text-left">404</h1>
+                        <p class="subtitle text-left block margin-0">
+                            segmentation fault — core dumped<span id="cursor"
+                                >|</span
+                            >
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-<hr/>
+        <hr />
 
-<div class="robot-wrap">
-<pre class="robot-ascii">
+        <div class="robot-wrap">
+            <pre class="robot-ascii">
           ___________
          /           \
         |  [<span class="eye">X</span>]   [<span class="eye">X</span>]  |
@@ -75,11 +98,11 @@
        exit code: 404
        status: <span class="status-blink">CRASHED</span>
 </pre>
-</div>
+        </div>
 
-<hr/>
+        <hr />
 
-<pre>
+        <pre>
 <span class="bold">KERNEL PANIC</span> — not syncing: page not found in address space
 
 <span class="dim">[ proc: browser   pid: 404   signal: SIGSEGV   errno: ENOENT ]</span>
@@ -97,9 +120,9 @@
   <span class="bold">→ Process terminated. You are lost in the stack.</span>
 </pre>
 
-<hr/>
-<h2>Recovery</h2>
-<pre>
+        <hr />
+        <h2>Recovery</h2>
+        <pre>
   $ ls /valid-routes/
 
   > <a href="/">home</a>           — the main page, everything about me
@@ -112,31 +135,32 @@
   [  <span class="bold">OK</span>  ] Ready. Pick a destination above.
 </pre>
 
-<hr/>
-<p style="text-align: center; margin-top: 8px;">
-  or just <code>cd <a href="/">~</a></code> and start over
-</p>
+        <hr />
+        <p style="text-align: center; margin-top: 8px">
+            or just <code>cd <a href="/">~</a></code> and start over
+        </p>
 
-<hr/>
-<p style="text-align: center; margin-top: 8px">
-  (reach out on <a href="https://x.com/SarvaiyaGitesh">X</a>,
-  <a href="https://github.com/giteshsarvaiya">github</a>,
-  <a href="https://www.linkedin.com/in/gitesh-sarvaiya-160b921b3/">LinkedIn</a>,
-  or <a href="mailto:gitesh.sarvaiya28@gmail.com">email</a> — let's
-  talk systems, design, and engineering)
-</p>
-<hr/>
+        <hr />
+        <p style="text-align: center; margin-top: 8px">
+            (reach out on <a href="https://x.com/SarvaiyaGitesh">X</a>,
+            <a href="https://github.com/giteshsarvaiya">github</a>,
+            <a href="https://www.linkedin.com/in/gitesh-sarvaiya-160b921b3/"
+                >LinkedIn</a
+            >, or <a href="mailto:gitesh.sarvaiya28@gmail.com">email</a> — let's
+            talk systems, design, and engineering)
+        </p>
+        <hr />
 
-  <div class="scroll-progress" id="scrollProgress"></div>
-  <button class="back-to-top" id="backToTop">Top</button>
-  <button class="theme-toggle-fixed" id="themeToggle">Light</button>
+        <div class="scroll-progress" id="scrollProgress"></div>
+        <button class="back-to-top" id="backToTop">Top</button>
+        <button class="theme-toggle-fixed" id="themeToggle">Light</button>
 
-  <div class="debug-grid"></div>
-  <script src="/index.js"></script>
-  <script
-    data-goatcounter="https://giteshsavaiya.goatcounter.com/count"
-    async
-    src="//gc.zgo.at/count.js"
-  ></script>
-</body>
+        <div class="debug-grid"></div>
+        <script src="/index.js"></script>
+        <script
+            data-goatcounter="https://giteshsarvaiya.goatcounter.com/count"
+            async
+            src="//gc.zgo.at/count.js"
+        ></script>
+    </body>
 </html>

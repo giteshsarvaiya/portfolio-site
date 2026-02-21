@@ -473,7 +473,11 @@
                         setDownloadsEnabled(true);
                         replayBtn.disabled = false;
                         setStatus("done. ready to download.");
-                        window.goatcounter?.count({ path: "sig-generated", title: "Signature Generated", event: true });
+                        window.goatcounter?.count({
+                            path: "sig-generated",
+                            title: "Signature Generated",
+                            event: true,
+                        });
                     },
                 });
             }
@@ -491,7 +495,11 @@
             });
             colorPicker.addEventListener("change", () => {
                 mountUserSignature();
-                window.goatcounter?.count({ path: "sig-color-changed", title: "Signature Color Changed", event: true });
+                window.goatcounter?.count({
+                    path: "sig-color-changed",
+                    title: "Signature Color Changed",
+                    event: true,
+                });
             });
 
             speedSlider.addEventListener("input", () => {
@@ -499,7 +507,11 @@
             });
             speedSlider.addEventListener("change", () => {
                 mountUserSignature();
-                window.goatcounter?.count({ path: "sig-speed-changed", title: "Signature Speed Changed", event: true });
+                window.goatcounter?.count({
+                    path: "sig-speed-changed",
+                    title: "Signature Speed Changed",
+                    event: true,
+                });
             });
 
             fontSelect.addEventListener("change", () => {
@@ -507,7 +519,11 @@
                 fontUrlLabel.style.display = isCustom ? "block" : "none";
                 fontUrlInput.style.display = isCustom ? "block" : "none";
                 if (isCustom) {
-                    window.goatcounter?.count({ path: "sig-custom-font-selected", title: "Custom Font Selected", event: true });
+                    window.goatcounter?.count({
+                        path: "sig-custom-font-selected",
+                        title: "Custom Font Selected",
+                        event: true,
+                    });
                 }
                 mountUserSignature();
             });
@@ -516,7 +532,11 @@
 
             replayBtn.addEventListener("click", () => {
                 mountUserSignature();
-                window.goatcounter?.count({ path: "sig-replayed", title: "Signature Replayed", event: true });
+                window.goatcounter?.count({
+                    path: "sig-replayed",
+                    title: "Signature Replayed",
+                    event: true,
+                });
             });
 
             // ── SVG extraction ───────────────────────────────────────────────────────
@@ -569,7 +589,11 @@
                 a.download = filename;
                 a.click();
                 URL.revokeObjectURL(url);
-                window.goatcounter?.count({ path: "svg-downloaded", title: "SVG Downloaded", event: true });
+                window.goatcounter?.count({
+                    path: "svg-downloaded",
+                    title: "SVG Downloaded",
+                    event: true,
+                });
             });
 
             // ── Download Animated SVG ─────────────────────────────────────────────────
@@ -630,13 +654,17 @@
                 a.click();
                 URL.revokeObjectURL(url);
                 setStatus("animated svg downloaded.");
-                window.goatcounter?.count({ path: "anim-svg-downloaded", title: "Animated SVG Downloaded", event: true });
+                window.goatcounter?.count({
+                    path: "anim-svg-downloaded",
+                    title: "Animated SVG Downloaded",
+                    event: true,
+                });
             });
         </script>
-    <script
-        data-goatcounter="https://giteshsavaiya.goatcounter.com/count"
-        async
-        src="//gc.zgo.at/count.js"
-    ></script>
+        <script
+            data-goatcounter="https://giteshsarvaiya.goatcounter.com/count"
+            async
+            src="//gc.zgo.at/count.js"
+        ></script>
     </body>
 </html>

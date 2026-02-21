@@ -901,7 +901,14 @@
                 class="text-center"
             ></div>
         </div>
-        <p style="text-align: center; margin-top: 0; font-size: 0.78rem; opacity: 0.55;">
+        <p
+            style="
+                text-align: center;
+                margin-top: 0;
+                font-size: 0.78rem;
+                opacity: 0.55;
+            "
+        >
             <a href="/animated-signature">build your own signature →</a>
         </p>
         <hr />
@@ -965,60 +972,86 @@
                 },
             });
         </script>
-    <script
-        data-goatcounter="https://giteshsavaiya.goatcounter.com/count"
-        async
-        src="//gc.zgo.at/count.js"
-    ></script>
-    <script>
-        (function () {
-            function track(path, title) {
-                window.goatcounter?.count({ path: path, title: title, event: true });
-            }
-
-            // ── Section visibility ───────────────────────────────────────
-            // Fires once per section when it enters the viewport
-            var seen = {};
-            var sectionObserver = new IntersectionObserver(function (entries) {
-                entries.forEach(function (e) {
-                    if (e.isIntersecting && !seen[e.target.id]) {
-                        seen[e.target.id] = true;
-                        track("section-" + e.target.id, "Section: " + e.target.id);
-                    }
-                });
-            }, { threshold: 0.25 });
-            ["experience", "projects", "skills", "achievements", "bookshelf"].forEach(function (id) {
-                var el = document.getElementById(id);
-                if (el) sectionObserver.observe(el);
-            });
-
-            // ── Terminal open ────────────────────────────────────────────
-            new MutationObserver(function (mutations) {
-                mutations.forEach(function (m) {
-                    if (m.attributeName === "class" && document.body.classList.contains("terminal-open")) {
-                        track("terminal-opened", "Terminal Opened");
-                    }
-                });
-            }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
-
-            // ── Theme toggle ─────────────────────────────────────────────
-            document.addEventListener("click", function (e) {
-                if (e.target.id === "themeToggle") {
-                    // index.js already updated data-theme by the time this fires
-                    var theme = document.documentElement.getAttribute("data-theme");
-                    track("theme-" + theme, "Theme switched: " + theme);
+        <script
+            data-goatcounter="https://giteshsarvaiya.goatcounter.com/count"
+            async
+            src="//gc.zgo.at/count.js"
+        ></script>
+        <script>
+            (function () {
+                function track(path, title) {
+                    window.goatcounter?.count({
+                        path: path,
+                        title: title,
+                        event: true,
+                    });
                 }
-            });
 
-            // ── Outbound link clicks ─────────────────────────────────────
-            document.addEventListener("click", function (e) {
-                var link = e.target.closest('a[target="_blank"]');
-                if (!link) return;
-                var href = link.getAttribute("href") || "";
-                var label = (link.textContent || "").trim().replace(/\s+/g, " ").slice(0, 50);
-                track("outbound: " + href, "Outbound: " + (label || href));
-            });
-        })();
-    </script>
+                // ── Section visibility ───────────────────────────────────────
+                // Fires once per section when it enters the viewport
+                var seen = {};
+                var sectionObserver = new IntersectionObserver(
+                    function (entries) {
+                        entries.forEach(function (e) {
+                            if (e.isIntersecting && !seen[e.target.id]) {
+                                seen[e.target.id] = true;
+                                track(
+                                    "section-" + e.target.id,
+                                    "Section: " + e.target.id,
+                                );
+                            }
+                        });
+                    },
+                    { threshold: 0.25 },
+                );
+                [
+                    "experience",
+                    "projects",
+                    "skills",
+                    "achievements",
+                    "bookshelf",
+                ].forEach(function (id) {
+                    var el = document.getElementById(id);
+                    if (el) sectionObserver.observe(el);
+                });
+
+                // ── Terminal open ────────────────────────────────────────────
+                new MutationObserver(function (mutations) {
+                    mutations.forEach(function (m) {
+                        if (
+                            m.attributeName === "class" &&
+                            document.body.classList.contains("terminal-open")
+                        ) {
+                            track("terminal-opened", "Terminal Opened");
+                        }
+                    });
+                }).observe(document.body, {
+                    attributes: true,
+                    attributeFilter: ["class"],
+                });
+
+                // ── Theme toggle ─────────────────────────────────────────────
+                document.addEventListener("click", function (e) {
+                    if (e.target.id === "themeToggle") {
+                        // index.js already updated data-theme by the time this fires
+                        var theme =
+                            document.documentElement.getAttribute("data-theme");
+                        track("theme-" + theme, "Theme switched: " + theme);
+                    }
+                });
+
+                // ── Outbound link clicks ─────────────────────────────────────
+                document.addEventListener("click", function (e) {
+                    var link = e.target.closest('a[target="_blank"]');
+                    if (!link) return;
+                    var href = link.getAttribute("href") || "";
+                    var label = (link.textContent || "")
+                        .trim()
+                        .replace(/\s+/g, " ")
+                        .slice(0, 50);
+                    track("outbound: " + href, "Outbound: " + (label || href));
+                });
+            })();
+        </script>
     </body>
 </html>
