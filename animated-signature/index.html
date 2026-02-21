@@ -489,23 +489,35 @@
                 const mount = document.getElementById("user-sig-mount");
                 mount.style.color = colorPicker.value;
             });
-            colorPicker.addEventListener("change", mountUserSignature);
+            colorPicker.addEventListener("change", () => {
+                mountUserSignature();
+                window.goatcounter?.count({ path: "sig-color-changed", title: "Signature Color Changed", event: true });
+            });
 
             speedSlider.addEventListener("input", () => {
                 speedLabel.textContent = speedSlider.value + "s";
             });
-            speedSlider.addEventListener("change", mountUserSignature);
+            speedSlider.addEventListener("change", () => {
+                mountUserSignature();
+                window.goatcounter?.count({ path: "sig-speed-changed", title: "Signature Speed Changed", event: true });
+            });
 
             fontSelect.addEventListener("change", () => {
                 const isCustom = fontSelect.value === "custom";
                 fontUrlLabel.style.display = isCustom ? "block" : "none";
                 fontUrlInput.style.display = isCustom ? "block" : "none";
+                if (isCustom) {
+                    window.goatcounter?.count({ path: "sig-custom-font-selected", title: "Custom Font Selected", event: true });
+                }
                 mountUserSignature();
             });
 
             fontUrlInput.addEventListener("change", mountUserSignature);
 
-            replayBtn.addEventListener("click", mountUserSignature);
+            replayBtn.addEventListener("click", () => {
+                mountUserSignature();
+                window.goatcounter?.count({ path: "sig-replayed", title: "Signature Replayed", event: true });
+            });
 
             // ── SVG extraction ───────────────────────────────────────────────────────
 
