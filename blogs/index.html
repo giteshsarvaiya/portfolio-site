@@ -185,6 +185,18 @@
         </p>
 
         <hr />
+        <div class="container text-center">
+            <div
+                id="signature-mount"
+                style="
+                    max-width: 160px;
+                    color: currentColor;
+                    margin-bottom: 0.5rem;
+                "
+                class="text-center"
+            ></div>
+        </div>
+        <hr />
         <p style="text-align: center; margin-top: 8px">
             (reach out on <a href="https://x.com/SarvaiyaGitesh">X</a>,
             <a href="https://github.com/giteshsarvaiya">github</a>,
@@ -201,5 +213,25 @@
 
         <div class="debug-grid"></div>
         <script src="../index.js"></script>
+
+        <!-- Animated signature -->
+        <script src="../animated-signature.js"></script>
+        <script>
+            AnimatedSignatureLib.mount("#signature-mount", {
+                name: "Gitesh ...",
+                fontUrl:
+                    "https://fonts.gstatic.com/s/momosignature/v2/RrQJbop99C51b06IDAuFoM0yCqco.ttf",
+                mode: "stroke",
+                fontSize: 10,
+                strokeWidth: 1,
+                duration: 2,
+                overlap: 0.4,
+                ease: [0.4, 0, 0.2, 1],
+                ghostOpacity: 0.1,
+                style: {
+                    filter: "drop-shadow(0px 2px 6px rgba(0,0,0,0.2))",
+                },
+            });
+        </script>
     </body>
 </html>

@@ -44,6 +44,13 @@ body {
   width: full;
   text-align: left;
 }
+.text-center {
+  text-align: center;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
 .text-v-center{
   display: flex;
   gap: 4px;
