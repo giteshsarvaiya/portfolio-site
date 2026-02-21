@@ -1,0 +1,630 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=yes"
+        />
+        <meta name="author" content="Gitesh Sarvaiya" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <meta
+            property="og:title"
+            content="Animated Signature — Gitesh Sarvaiya"
+        />
+        <meta
+            property="og:description"
+            content="Generate and download an animated signature for any name."
+        />
+        <meta
+            property="og:url"
+            content="https://giteshsarvaiya.xyz/animated-signature"
+        />
+        <meta property="og:type" content="website" />
+        <title>Animated Signature — Gitesh Sarvaiya</title>
+        <link rel="stylesheet" href="/reset.css" />
+        <link rel="stylesheet" href="/index.css" />
+        <style>
+            /* ── Signature display containers ── */
+            .sig-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 2rem auto;
+                min-height: 80px;
+            }
+            #my-sig-mount {
+                max-width: 480px;
+                width: 100%;
+                color: currentColor;
+            }
+            #user-sig-mount {
+                max-width: 600px;
+                width: 100%;
+            }
+
+            /* ── Controls row ── */
+            .sig-actions {
+                display: flex;
+                gap: 1ch;
+                flex-wrap: wrap;
+                margin-bottom: 1rem;
+            }
+            .sig-actions button:disabled {
+                opacity: 0.35;
+                cursor: not-allowed;
+            }
+            .sig-actions button:disabled:hover {
+                background: var(--background-color);
+            }
+            .sig-actions button:disabled:active {
+                transform: none;
+            }
+
+            /* ── Generator form ── */
+            .sig-form {
+                display: grid;
+                grid-template-columns: 14ch 1fr;
+                gap: calc(var(--line-height) / 2) 1ch;
+                align-items: center;
+                margin-bottom: 1.5rem;
+            }
+            .sig-form label {
+                display: block;
+                font-weight: var(--font-weight-medium);
+                white-space: nowrap;
+            }
+            .sig-form input[type="text"],
+            .sig-form input[type="url"],
+            .sig-form select {
+                width: 100%;
+            }
+            .sig-form input[type="range"] {
+                -webkit-appearance: auto;
+                appearance: auto;
+                border: none;
+                height: auto;
+                padding: 0;
+                width: 100%;
+                accent-color: var(--text-color);
+                cursor: pointer;
+            }
+            .sig-form input[type="color"] {
+                padding: 2px;
+                width: 8ch;
+                height: calc(var(--line-height) * 2);
+                cursor: pointer;
+            }
+            .range-row {
+                display: flex;
+                align-items: center;
+                gap: 1ch;
+            }
+            .range-label {
+                white-space: nowrap;
+                min-width: 4ch;
+                text-align: right;
+                opacity: 0.6;
+            }
+
+            /* ── Empty state placeholder ── */
+            .sig-placeholder {
+                opacity: 0.3;
+                font-size: 0.85rem;
+                text-align: center;
+                padding: 1.5rem 0;
+            }
+
+            /* ── Status message ── */
+            #sig-status {
+                font-size: 0.8rem;
+                opacity: 0.55;
+                min-height: var(--line-height);
+                margin-bottom: 0.5rem;
+            }
+
+            /* ── Small action buttons ── */
+            .sig-actions button {
+                font-size: 0.72rem;
+                height: auto;
+                padding: 2px 8px;
+                line-height: var(--line-height);
+            }
+
+            /* ── Themed select wrapper ── */
+            .select-wrap {
+                position: relative;
+            }
+            .select-wrap::after {
+                content: "▾";
+                position: absolute;
+                right: 1ch;
+                top: 50%;
+                transform: translateY(-50%);
+                pointer-events: none;
+                color: var(--text-color);
+                font-size: 0.8rem;
+                line-height: 1;
+                margin-top: 0;
+            }
+            .sig-form select {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 100%;
+                border: var(--border-thickness) solid var(--text-color);
+                background-color: var(--background-color);
+                color: var(--text-color);
+                font: inherit;
+                font-weight: inherit;
+                height: calc(var(--line-height) * 2);
+                padding: calc(var(--line-height) / 2 - var(--border-thickness))
+                    calc(3ch - var(--border-thickness))
+                    calc(var(--line-height) / 2 - var(--border-thickness))
+                    calc(1ch - var(--border-thickness));
+                cursor: pointer;
+                line-height: normal;
+            }
+            .sig-form select:focus {
+                --border-thickness: 3px;
+                outline: none;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- ── Header ── -->
+        <table class="header">
+            <tbody class="text-left">
+                <tr class="width-auto">
+                    <td colspan="4" class="text-left">
+                        <h1 class="title text-left">animated-signature</h1>
+                        <p class="subtitle text-left block margin-0">
+                            sign in pixels — animated, downloadable<span
+                                id="cursor"
+                                >|</span
+                            >
+                        </p>
+                    </td>
+                </tr>
+                <tr class="header-nav">
+                    <td class="text-left header-links" colspan="4">
+                        <div class="nav-split">
+                            <div class="nav-left"><a href="/">home</a></div>
+                            <div class="nav-right">
+                                <a href="/blogs">blog</a>
+                                <a href="/youtube">youtube</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr />
+
+        <!-- ── My signature ── -->
+        <h2>my signature</h2>
+        <p>
+            the one i use everywhere. rendered from a font, drawn in SVG,
+            animated with motion.
+        </p>
+
+        <div class="sig-container">
+            <div id="my-sig-mount"></div>
+        </div>
+
+        <div class="sig-actions">
+            <button id="my-replay-btn">↺ replay</button>
+        </div>
+
+        <hr />
+
+        <!-- ── Generator ── -->
+        <h2>generate yours</h2>
+        <p>
+            type a name below. the signature generates in real-time. download as
+            SVG or animated SVG.
+        </p>
+
+        <div class="sig-form">
+            <label for="name-input">name</label>
+            <input
+                type="text"
+                id="name-input"
+                placeholder="Your Name"
+                autocomplete="off"
+                spellcheck="false"
+                maxlength="60"
+            />
+
+            <label for="font-select">style</label>
+            <div class="select-wrap">
+                <select id="font-select">
+                    <option value="momo">Momo Signature (default)</option>
+                    <option value="custom">custom font url...</option>
+                </select>
+            </div>
+
+            <label
+                for="font-url-input"
+                id="font-url-label"
+                style="display: none"
+                >font url</label
+            >
+            <input
+                type="url"
+                id="font-url-input"
+                placeholder="https://fonts.gstatic.com/s/...ttf"
+                style="display: none"
+                spellcheck="false"
+            />
+
+            <label for="color-picker">color</label>
+            <div>
+                <input type="color" id="color-picker" value="#000000" />
+            </div>
+
+            <label for="speed-slider">speed</label>
+            <div class="range-row">
+                <input
+                    type="range"
+                    id="speed-slider"
+                    min="1"
+                    max="8"
+                    step="0.5"
+                    value="3"
+                />
+                <span class="range-label" id="speed-label">3s</span>
+            </div>
+        </div>
+
+        <!-- Preview -->
+        <div id="sig-status"></div>
+
+        <div class="sig-container">
+            <div id="user-sig-mount">
+                <p class="sig-placeholder">
+                    ↑ type a name to generate your signature
+                </p>
+            </div>
+        </div>
+
+        <div class="sig-actions">
+            <button id="user-replay-btn" disabled>↺ replay</button>
+            <button id="download-svg-btn" disabled>↓ svg</button>
+            <button id="download-anim-svg-btn" disabled>↓ animated svg</button>
+        </div>
+
+        <hr />
+        <p style="text-align: center; margin-top: 8px">
+            built with
+            <a
+                href="https://github.com/giteshsarvaiya/animated-signature"
+                target="_blank"
+                rel="noopener"
+                >animated-signature</a
+            >
+        </p>
+
+        <hr />
+        <p style="text-align: center; margin-top: 8px">
+            (reach out on <a href="https://x.com/SarvaiyaGitesh">X</a>,
+            <a href="https://github.com/giteshsarvaiya">github</a>,
+            <a href="https://www.linkedin.com/in/gitesh-sarvaiya-160b921b3/"
+                >LinkedIn</a
+            >, or <a href="mailto:gitesh.sarvaiya28@gmail.com">email</a> — let's
+            talk systems, design, and engineering)
+        </p>
+        <hr />
+
+        <div class="scroll-progress" id="scrollProgress"></div>
+        <button class="back-to-top" id="backToTop">Top</button>
+        <button class="theme-toggle-fixed" id="themeToggle">Light</button>
+        <div class="debug-grid"></div>
+
+        <script src="/index.js"></script>
+        <script src="/animated-signature.js"></script>
+        <script>
+            const MOMO_FONT_URL =
+                "https://fonts.gstatic.com/s/momosignature/v2/RrQJbop99C51b06IDAuFoM0yCqco.ttf";
+
+            // ── Helpers ──────────────────────────────────────────────────────────────
+
+            function getThemeColor() {
+                return (
+                    getComputedStyle(document.documentElement)
+                        .getPropertyValue("--text-color")
+                        .trim() || "#000000"
+                );
+            }
+
+            function hexFromRgb(rgb) {
+                // Converts "rgb(r, g, b)" → "#rrggbb"
+                const m = rgb.match(/\d+/g);
+                if (!m) return "#000000";
+                return (
+                    "#" +
+                    m
+                        .slice(0, 3)
+                        .map((n) => parseInt(n).toString(16).padStart(2, "0"))
+                        .join("")
+                );
+            }
+
+            function setStatus(msg) {
+                document.getElementById("sig-status").textContent = msg;
+            }
+
+            // ── My signature ─────────────────────────────────────────────────────────
+
+            let myUnmount = null;
+
+            function mountMySignature() {
+                if (myUnmount) {
+                    myUnmount();
+                    myUnmount = null;
+                }
+                myUnmount = AnimatedSignatureLib.mount("#my-sig-mount", {
+                    name: "Gitesh ...",
+                    fontUrl: MOMO_FONT_URL,
+                    fontSize: 72,
+                    duration: 4,
+                    ease: [0.4, 0, 0.2, 1],
+                    ghostOpacity: 0.1,
+                    style: {
+                        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.18))",
+                    },
+                });
+            }
+
+            document
+                .getElementById("my-replay-btn")
+                .addEventListener("click", mountMySignature);
+            mountMySignature();
+
+            // ── User signature generator ──────────────────────────────────────────────
+
+            let userUnmount = null;
+            let debounceTimer = null;
+            let currentName = "";
+
+            const nameInput = document.getElementById("name-input");
+            const fontSelect = document.getElementById("font-select");
+            const fontUrlLabel = document.getElementById("font-url-label");
+            const fontUrlInput = document.getElementById("font-url-input");
+            const colorPicker = document.getElementById("color-picker");
+            const speedSlider = document.getElementById("speed-slider");
+            const speedLabel = document.getElementById("speed-label");
+            const replayBtn = document.getElementById("user-replay-btn");
+            const downloadSvgBtn = document.getElementById("download-svg-btn");
+            const downloadAnimSvgBtn = document.getElementById(
+                "download-anim-svg-btn",
+            );
+
+            // Sync color picker with current theme on load
+            colorPicker.value = hexFromRgb(getThemeColor()) || "#000000";
+
+            // Update picker when theme changes (themeToggle is handled by index.js,
+            // so we observe attribute changes on the root element)
+            new MutationObserver(() => {
+                // Only reset if user hasn't customised the color
+                // (we track by whether it still matches the other theme's default)
+                const themeColor = hexFromRgb(getThemeColor());
+                if (
+                    colorPicker.value === "#000000" ||
+                    colorPicker.value === "#ffffff"
+                ) {
+                    colorPicker.value = themeColor;
+                    mountUserSignature();
+                }
+            }).observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: ["data-theme"],
+            });
+
+            function getFontUrl() {
+                if (fontSelect.value === "custom") {
+                    const url = fontUrlInput.value.trim();
+                    return url || MOMO_FONT_URL;
+                }
+                return MOMO_FONT_URL;
+            }
+
+            function setDownloadsEnabled(enabled) {
+                downloadSvgBtn.disabled = !enabled;
+                downloadAnimSvgBtn.disabled = !enabled;
+            }
+
+            function mountUserSignature() {
+                const name = nameInput.value.trim();
+                const fontUrl = getFontUrl();
+                const color = colorPicker.value;
+                const duration = parseFloat(speedSlider.value);
+
+                const mount = document.getElementById("user-sig-mount");
+
+                if (userUnmount) {
+                    userUnmount();
+                    userUnmount = null;
+                }
+                setDownloadsEnabled(false);
+                replayBtn.disabled = true;
+
+                if (!name) {
+                    mount.innerHTML =
+                        '<p class="sig-placeholder">↑ type a name to generate your signature</p>';
+                    setStatus("");
+                    currentName = "";
+                    return;
+                }
+
+                currentName = name;
+                mount.innerHTML = "";
+                mount.style.color = color;
+                setStatus("generating...");
+
+                userUnmount = AnimatedSignatureLib.mount("#user-sig-mount", {
+                    name,
+                    fontUrl,
+                    fontSize: 72,
+                    duration,
+                    ease: [0.4, 0, 0.2, 1],
+                    ghostOpacity: 0.08,
+                    onAnimationComplete: () => {
+                        setDownloadsEnabled(true);
+                        replayBtn.disabled = false;
+                        setStatus("done. ready to download.");
+                        window.goatcounter?.count({ path: "sig-generated", title: "Signature Generated", event: true });
+                    },
+                });
+            }
+
+            function debouncedMount() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(mountUserSignature, 380);
+            }
+
+            nameInput.addEventListener("input", debouncedMount);
+            colorPicker.addEventListener("input", () => {
+                // Apply color change immediately to container without re-mounting
+                const mount = document.getElementById("user-sig-mount");
+                mount.style.color = colorPicker.value;
+            });
+            colorPicker.addEventListener("change", mountUserSignature);
+
+            speedSlider.addEventListener("input", () => {
+                speedLabel.textContent = speedSlider.value + "s";
+            });
+            speedSlider.addEventListener("change", mountUserSignature);
+
+            fontSelect.addEventListener("change", () => {
+                const isCustom = fontSelect.value === "custom";
+                fontUrlLabel.style.display = isCustom ? "block" : "none";
+                fontUrlInput.style.display = isCustom ? "block" : "none";
+                mountUserSignature();
+            });
+
+            fontUrlInput.addEventListener("change", mountUserSignature);
+
+            replayBtn.addEventListener("click", mountUserSignature);
+
+            // ── SVG extraction ───────────────────────────────────────────────────────
+
+            function extractCleanSVG(containerId) {
+                const container = document.getElementById(containerId);
+                const svg = container.querySelector("svg");
+                if (!svg) return null;
+
+                // The library renders: ghost path (low opacity) + <g clip-path="..."><path .../></g>
+                // We want the ink path inside the clipped group.
+                const inkPath =
+                    svg.querySelector("g[clip-path] path") ||
+                    svg.querySelector("g path") ||
+                    [...svg.querySelectorAll("path")].pop();
+
+                if (!inkPath) return null;
+
+                const viewBox = svg.getAttribute("viewBox");
+                const d = inkPath.getAttribute("d");
+                const color = container.style.color || "#000000";
+
+                const svgString =
+                    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}">\n` +
+                    `  <path d="${d}" fill="${color}"/>\n` +
+                    `</svg>`;
+
+                return { svgString, viewBox, color };
+            }
+
+            // ── Download SVG ─────────────────────────────────────────────────────────
+
+            downloadSvgBtn.addEventListener("click", () => {
+                const data = extractCleanSVG("user-sig-mount");
+                if (!data) return;
+
+                const filename =
+                    (currentName || "signature")
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")
+                        .replace(/[^a-z0-9-]/g, "") + "-signature.svg";
+
+                const blob = new Blob([data.svgString], {
+                    type: "image/svg+xml",
+                });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+                window.goatcounter?.count({ path: "svg-downloaded", title: "SVG Downloaded", event: true });
+            });
+
+            // ── Download Animated SVG ─────────────────────────────────────────────────
+
+            downloadAnimSvgBtn.addEventListener("click", () => {
+                const mount = document.getElementById("user-sig-mount");
+                const svg = mount.querySelector("svg");
+                if (!svg) return;
+
+                const inkPath =
+                    svg.querySelector("g[clip-path] path") ||
+                    svg.querySelector("g path") ||
+                    [...svg.querySelectorAll("path")].pop();
+
+                if (!inkPath) return;
+
+                const viewBox = svg.getAttribute("viewBox");
+                const d = inkPath.getAttribute("d");
+                const color = mount.style.color || "#000000";
+                const duration = parseFloat(speedSlider.value) || 3;
+                const [, , vw, vh] = viewBox.split(" ").map(Number);
+
+                // Build a self-contained animated SVG using SMIL — clips the filled
+                // glyph from left to right to simulate the drawing animation.
+                const animSVG =
+                    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}">\n` +
+                    `  <defs>\n` +
+                    `    <clipPath id="reveal">\n` +
+                    `      <rect x="0" y="-9999" width="0" height="${vh + 19998}">\n` +
+                    `        <animate attributeName="width"\n` +
+                    `          from="0" to="${vw}"\n` +
+                    `          dur="${duration}s"\n` +
+                    `          fill="freeze"\n` +
+                    `          calcMode="spline"\n` +
+                    `          keyTimes="0;1"\n` +
+                    `          keySplines="0.4 0 0.2 1"/>\n` +
+                    `      </rect>\n` +
+                    `    </clipPath>\n` +
+                    `  </defs>\n` +
+                    `  <path d="${d}" fill="${color}" opacity="0.08"/>\n` +
+                    `  <g clip-path="url(#reveal)">\n` +
+                    `    <path d="${d}" fill="${color}"/>\n` +
+                    `  </g>\n` +
+                    `</svg>`;
+
+                const filename =
+                    (currentName || "signature")
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")
+                        .replace(/[^a-z0-9-]/g, "") + "-signature-animated.svg";
+
+                const blob = new Blob([animSVG], { type: "image/svg+xml" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+                setStatus("animated svg downloaded.");
+                window.goatcounter?.count({ path: "anim-svg-downloaded", title: "Animated SVG Downloaded", event: true });
+            });
+        </script>
+    <script
+        data-goatcounter="https://giteshsavaiya.goatcounter.com/count"
+        async
+        src="//gc.zgo.at/count.js"
+    ></script>
+    </body>
+</html>

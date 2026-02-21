@@ -8,6 +8,36 @@
   <title>404 — Gitesh Sarvaiya</title>
   <link rel="stylesheet" href="/reset.css" />
   <link rel="stylesheet" href="/index.css" />
+  <style>
+    .robot-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    .robot-ascii {
+      display: inline-block;
+      line-height: 1.5;
+      text-align: left;
+    }
+    .eye {
+      display: inline-block;
+      animation: eye-crash 4s ease-in-out infinite;
+    }
+    @keyframes eye-crash {
+      0%, 80%, 100% { opacity: 1; }
+      85%, 93%      { opacity: 0; }
+    }
+    .status-blink {
+      animation: status-pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes status-pulse {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.25; }
+    }
+    .dim { opacity: 0.5; }
+    .bold { font-weight: var(--font-weight-bold); }
+    pre a { text-decoration: underline; }
+  </style>
 </head>
 <body>
   <table class="header">
@@ -16,7 +46,7 @@
         <td colspan="4" class="text-left">
           <h1 class="title text-left">404</h1>
           <p class="subtitle text-left block margin-0">
-            page not found<span id="cursor">|</span>
+            segmentation fault — core dumped<span id="cursor">|</span>
           </p>
         </td>
       </tr>
@@ -24,29 +54,68 @@
   </table>
 
 <hr/>
+
+<div class="robot-wrap">
+<pre class="robot-ascii">
+          ___________
+         /           \
+        |  [<span class="eye">X</span>]   [<span class="eye">X</span>]  |
+        |      ^      |
+        |   \_______/ |
+         \___________/
+              |||
+          .---------.
+          | G I T   |
+          |  B O T  |
+          '---------'
+              |||
+             _|||_
+
+    &lt;&lt; SIGSEGV received
+       exit code: 404
+       status: <span class="status-blink">CRASHED</span>
+</pre>
+</div>
+
+<hr/>
+
 <pre>
-  $ curl giteshsarvaiya.co/this-page
+<span class="bold">KERNEL PANIC</span> — not syncing: page not found in address space
 
-  HTTP/1.1 404 Not Found
-  Content-Type: text/plain
+<span class="dim">[ proc: browser   pid: 404   signal: SIGSEGV   errno: ENOENT ]</span>
 
-  the page you're looking for
-  doesn't exist. maybe it was
-  deleted, maybe it never was.
+  Fault:   null pointer dereference at 0x00000000
+  Path:    requested route not found in filesystem
+  Cause:   you wandered into unknown address space
 
-  either way, here's what does exist:
+  Stack trace (most recent call last):
+    #0  load_page        (url=<span class="bold">NULL</span>)                     at router.c:404
+    #1  resolve_route    (path="/this-page-is-void") at nav.c:1
+    #2  handle_request   (method=GET, status=404)    at http.c:42
+    #3  main             ()                          at browser.c:0
+
+  <span class="bold">→ Process terminated. You are lost in the stack.</span>
 </pre>
 
 <hr/>
-<h2>Try these instead</h2>
-<ul class="incremental">
-  <li><a href="/">Home</a> — the main page, everything about me</li>
-  <li><a href="/blogs">Blog</a> — system design, fullstack, React, cloud</li>
-  <li><a href="/youtube">YouTube</a> — building in public</li>
-</ul>
+<h2>Recovery</h2>
+<pre>
+  $ ls /valid-routes/
+
+  > <a href="/">home</a>           — the main page, everything about me
+  > <a href="/blogs">blogs</a>          — system design, fullstack, React, cloud
+  > <a href="/youtube">youtube</a>        — building in public
+
+  $ ./recover.sh
+  [  <span class="bold">OK</span>  ] Scanning for valid paths...
+  [  <span class="bold">OK</span>  ] Route table reloaded.
+  [  <span class="bold">OK</span>  ] Ready. Pick a destination above.
+</pre>
 
 <hr/>
-<p style="text-align: center; margin-top: 8px;">or just go <a href="/">home</a></p>
+<p style="text-align: center; margin-top: 8px;">
+  or just <code>cd <a href="/">~</a></code> and start over
+</p>
 
 <hr/>
 <p style="text-align: center; margin-top: 8px">
@@ -64,5 +133,10 @@
 
   <div class="debug-grid"></div>
   <script src="/index.js"></script>
+  <script
+    data-goatcounter="https://giteshsavaiya.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+  ></script>
 </body>
 </html>

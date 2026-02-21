@@ -634,6 +634,69 @@
                 <li>Stack: Next.js, PostgreSQL, Express.js, Tailwind CSS</li>
             </ul>
         </details>
+        <details open>
+            <summary>
+                <strong>animated-signature</strong> — Open-source NPM Library ·
+                2026
+            </summary>
+            <p>
+                <a href="/animated-signature">[live demo]</a>
+                ·
+                <a
+                    href="https://www.npmjs.com/package/animated-signature"
+                    target="_blank"
+                    rel="noopener"
+                    >[npm]</a
+                >
+                ·
+                <a
+                    href="https://github.com/giteshsarvaiya/animated-signature"
+                    target="_blank"
+                    rel="noopener"
+                    >[github]</a
+                >
+            </p>
+            <ul class="incremental">
+                <li>
+                    Generate animated SVG signatures from any font — renders a
+                    glyph path and draws it with smooth motion
+                </li>
+                <li>
+                    Configurable duration, easing, ghost opacity, color, and
+                    custom font URL support
+                </li>
+                <li>
+                    Downloadable as static SVG or self-contained animated SVG
+                    (SMIL)
+                </li>
+                <li>Stack: TypeScript, Framer Motion, React, SVG/SMIL</li>
+            </ul>
+        </details>
+        <details>
+            <summary>
+                <strong>drag-and-drop-hook</strong> — Open-source NPM Library ·
+                2025 · <em>archived</em>
+            </summary>
+            <p>
+                <a
+                    href="https://www.npmjs.com/package/drag-and-drop-hook"
+                    target="_blank"
+                    rel="noopener"
+                    >[npm]</a
+                >
+            </p>
+            <ul class="incremental">
+                <li>
+                    React hook for drag-and-drop interactions — built while
+                    working at Maura
+                </li>
+                <li>
+                    Headless, composable API — drop into any component without
+                    imposing structure or styles
+                </li>
+                <li>Stack: TypeScript, React, pragmatic-drag-and-drop</li>
+            </ul>
+        </details>
 
         <hr />
         <h2 id="skills">Technical Skills</h2>
@@ -838,6 +901,9 @@
                 class="text-center"
             ></div>
         </div>
+        <p style="text-align: center; margin-top: 0; font-size: 0.78rem; opacity: 0.55;">
+            <a href="/animated-signature">build your own signature →</a>
+        </p>
         <hr />
         <p style="text-align: center; margin-top: 8px">
             (reach out on <a href="https://x.com/SarvaiyaGitesh">X</a>,
@@ -899,5 +965,60 @@
                 },
             });
         </script>
+    <script
+        data-goatcounter="https://giteshsavaiya.goatcounter.com/count"
+        async
+        src="//gc.zgo.at/count.js"
+    ></script>
+    <script>
+        (function () {
+            function track(path, title) {
+                window.goatcounter?.count({ path: path, title: title, event: true });
+            }
+
+            // ── Section visibility ───────────────────────────────────────
+            // Fires once per section when it enters the viewport
+            var seen = {};
+            var sectionObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting && !seen[e.target.id]) {
+                        seen[e.target.id] = true;
+                        track("section-" + e.target.id, "Section: " + e.target.id);
+                    }
+                });
+            }, { threshold: 0.25 });
+            ["experience", "projects", "skills", "achievements", "bookshelf"].forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el) sectionObserver.observe(el);
+            });
+
+            // ── Terminal open ────────────────────────────────────────────
+            new MutationObserver(function (mutations) {
+                mutations.forEach(function (m) {
+                    if (m.attributeName === "class" && document.body.classList.contains("terminal-open")) {
+                        track("terminal-opened", "Terminal Opened");
+                    }
+                });
+            }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+            // ── Theme toggle ─────────────────────────────────────────────
+            document.addEventListener("click", function (e) {
+                if (e.target.id === "themeToggle") {
+                    // index.js already updated data-theme by the time this fires
+                    var theme = document.documentElement.getAttribute("data-theme");
+                    track("theme-" + theme, "Theme switched: " + theme);
+                }
+            });
+
+            // ── Outbound link clicks ─────────────────────────────────────
+            document.addEventListener("click", function (e) {
+                var link = e.target.closest('a[target="_blank"]');
+                if (!link) return;
+                var href = link.getAttribute("href") || "";
+                var label = (link.textContent || "").trim().replace(/\s+/g, " ").slice(0, 50);
+                track("outbound: " + href, "Outbound: " + (label || href));
+            });
+        })();
+    </script>
     </body>
 </html>
