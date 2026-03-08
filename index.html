@@ -15,7 +15,7 @@
         <meta property="og:title" content="Gitesh Sarvaiya" />
         <meta
             property="og:description"
-            content="Fullstack Engineer · Design Engineer · System Thinker · Solution Engineer — building products end-to-end"
+            content="Fullstack Engineer · System Thinker · Solution Engineer — building products end-to-end"
         />
         <meta
             property="og:image"
@@ -25,6 +25,9 @@
         <meta property="og:type" content="website" />
 
         <title>Gitesh Sarvaiya</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="reset.css" />
         <link rel="stylesheet" href="index.css" />
     </head>
@@ -35,8 +38,8 @@
                     <td colspan="4" class="text-left">
                         <h1 class="title text-left">Gitesh Sarvaiya</h1>
                         <p class="subtitle text-left block margin-0">
-                            Fullstack Engineer · Design Engineer · System
-                            Thinker · Solution Engineer<span id="cursor"
+                            Fullstack Engineer · System Thinker · Solution
+                            Engineer<span id="cursor"
                                 >|</span
                             >
                         </p>
@@ -63,56 +66,46 @@
         </table>
 
         <nav id="TOC" role="doc-toc">
-            <h2 id="toc-title">Contents</h2>
-            <ul class="incremental">
-                <li><a href="#now" id="toc-now">Now</a></li>
-                <li>
-                    <a href="#introduction" id="toc-introduction"
-                        >Introduction</a
-                    >
-                </li>
-                <li><a href="#what-i-do" id="toc-what-i-do">What I Do</a></li>
-                <li>
-                    <a href="#experience" id="toc-experience">Experience</a>
-                </li>
-                <li><a href="#projects" id="toc-projects">Projects</a></li>
-                <li><a href="#skills" id="toc-skills">Technical Skills</a></li>
-                <li>
-                    <a href="#achievements" id="toc-achievements"
-                        >Achievements</a
-                    >
-                </li>
-                <li><a href="/blogs">Blog</a></li>
-                <li><a href="/youtube">YouTube</a></li>
-                <li>
-                    <a href="#bookshelf" id="toc-bookshelf">My Bookshelf</a>
-                </li>
-                <li>
-                    <a href="#fav-youtube" id="toc-fav-youtube"
-                        >My Favourite Youtube Channels</a
-                    >
-                </li>
+            <div class="toc-header">
+                <span class="toc-label">On this page</span>
+                <div class="toc-external">
+                    <a href="/blogs" class="toc-ext-link">Blog ↗</a>
+                    <a href="/youtube" class="toc-ext-link">YouTube ↗</a>
+                </div>
+            </div>
+            <ul class="toc-list">
+                <li><a href="#now">Now</a></li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#what-i-do">What I Do</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Technical Skills</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#bookshelf">Bookshelf</a></li>
+                <li><a href="#fav-youtube">YouTube Channels</a></li>
             </ul>
         </nav>
         <hr />
         <h2 id="now">Now</h2>
-        <p><em>Last updated: Mar 2026</em></p>
-        <ul class="incremental">
-            <li>
-                Leading CRM + WhatsApp campaign platform development at Innovun
-                Global
-            </li>
-            <li>
-                Writing about
-                <a href="/blogs">system design and fullstack engineering</a> on
-                Medium
-            </li>
-            <li>Reading: Refactoring UI, System Design Interview Vol. 1</li>
-        </ul>
+        <div class="now-card">
+            <p class="now-updated"><em>Last updated: Mar 2026</em></p>
+            <ul class="incremental">
+                <li>
+                    Leading CRM + WhatsApp campaign platform development at Innovun
+                    Global
+                </li>
+                <li>
+                    Writing about
+                    <a href="/blogs">system design and fullstack engineering</a> on
+                    Medium
+                </li>
+                <li>Reading: Refactoring UI, System Design Interview Vol. 1</li>
+            </ul>
+        </div>
 
         <hr />
         <h2 id="introduction">Introduction</h2>
-        <p>I talk to and humans, computers, books, cats, dogs.</p>
+        <p>I talk to humans, computers, books, cats, dogs.</p>
         <p>
             I am a fullstack developer interested in real-time software,
             collaborative editors, locally-synced systems, Gen AI products, and
@@ -133,82 +126,38 @@
 
         <hr />
         <h2 id="what-i-do">What I Do</h2>
-        <pre class="diagram-desktop">
-  ┌──────────────────────────────────────────────────────────────┐
-  │                    how i build things                        │
-  ├──────────────────────────────────────────────────────────────┤
-  │                                                              │
-  │   understand           architect             ship            │
-  │   the problem          the system            with care       │
-  │       │                    │                    │            │
-  │       ▼                    ▼                    ▼            │
-  │  ┌──────────┐        ┌──────────┐        ┌──────────┐       │
-  │  │  <span class="diagram-box" data-target="detail-design">DESIGN</span>  │        │  <span class="diagram-box" data-target="detail-system">SYSTEM</span>  │        │ <span class="diagram-box" data-target="detail-fullstack">FULLSTACK</span>│       │
-  │  │ <span class="diagram-box" data-target="detail-design">ENGINEER</span> │───────►│ <span class="diagram-box" data-target="detail-system">THINKER</span>  │───────►│ <span class="diagram-box" data-target="detail-fullstack">ENGINEER</span> │       │
-  │  └──────────┘        └──────────┘        └──────────┘       │
-  │       │                    │                    │            │
-  │  · talk to users     · db schemas         · frontend        │
-  │  · design intent     · CRDT/conflict      · backend APIs    │
-  │  · interaction        · CI/CD pipelines    · WebSockets      │
-  │    details           · caching             · databases       │
-  │  · component          · data modeling      · deployment      │
-  │    systems           · architecture        · integration     │
-  │  · responsive         · message queues     · performance     │
-  │    layouts           · sync engines        · monitoring      │
-  │  · loading states                                            │
-  │  · drag-and-drop                                             │
-  │                                                              │
-  │          ┌──────────────────────────────────┐                │
-  │          │  all three = products that work  │                │
-  │          │  and feel right at every layer   │                │
-  │          └──────────────────────────────────┘                │
-  │                                                              │
-  └──────────────────────────────────────────────────────────────┘
-</pre>
-        <pre class="diagram-mobile">
- ┌─────────────────────────┐
- │   how i build things    │
- ├─────────────────────────┤
- │                         │
- │  ┌───────────────────┐  │
- │  │  <span class="diagram-box" data-target="detail-design">DESIGN ENGINEER</span>  │  │
- │  └────────┬──────────┘  │
- │           ▼             │
- │  · talk to users        │
- │  · design intent        │
- │  · interaction details  │
- │  · component systems    │
- │  · responsive layouts   │
- │  · drag-and-drop        │
- │           │             │
- │           ▼             │
- │  ┌───────────────────┐  │
- │  │  <span class="diagram-box" data-target="detail-system">SYSTEM THINKER</span>   │  │
- │  └────────┬──────────┘  │
- │           ▼             │
- │  · db schemas           │
- │  · CRDT/conflict        │
- │  · CI/CD pipelines      │
- │  · data modeling        │
- │  · sync engines         │
- │           │             │
- │           ▼             │
- │  ┌───────────────────┐  │
- │  │ <span class="diagram-box" data-target="detail-fullstack">FULLSTACK ENGINEER</span>│  │
- │  └────────┬──────────┘  │
- │           ▼             │
- │  · frontend + backend   │
- │  · WebSockets           │
- │  · databases            │
- │  · deployment           │
- │  · performance          │
- │                         │
- │  ─────────────────────  │
- │  all three = products   │
- │  that work and feel     │
- │  right at every layer   │
- └─────────────────────────┘
-</pre>
+        <div class="wid-grid">
+            <div class="wid-card diagram-box" data-target="detail-system">
+                <span class="wid-step">architect the system</span>
+                <h3 class="wid-title">System<br />Thinker</h3>
+                <ul class="wid-list">
+                    <li>db schemas</li>
+                    <li>CRDT / conflict</li>
+                    <li>CI/CD pipelines</li>
+                    <li>caching strategies</li>
+                    <li>data modeling</li>
+                    <li>message queues</li>
+                    <li>sync engines</li>
+                </ul>
+            </div>
+            <div class="wid-arrow" aria-hidden="true">→</div>
+            <div class="wid-card diagram-box" data-target="detail-fullstack">
+                <span class="wid-step">ship with care</span>
+                <h3 class="wid-title">Fullstack<br />Engineer</h3>
+                <ul class="wid-list">
+                    <li>frontend</li>
+                    <li>backend APIs</li>
+                    <li>WebSockets</li>
+                    <li>databases</li>
+                    <li>deployment</li>
+                    <li>performance</li>
+                    <li>monitoring</li>
+                </ul>
+            </div>
+        </div>
+        <p class="wid-footer">
+            both = products that work and feel right at every layer
+        </p>
         <details open id="detail-fullstack">
             <summary>Fullstack Engineer</summary>
             <p>
@@ -216,15 +165,6 @@
                 databases, CI/CD, deployment. I've shipped CRM platforms,
                 real-time collaborative editors, chat systems over WebSockets,
                 and marketing sites on Cloudflare Workers + KV.
-            </p>
-        </details>
-        <details open id="detail-design">
-            <summary>Design Engineer</summary>
-            <p>
-                I sit at the intersection of design and code. I don't just
-                implement designs — I think about how interfaces should feel.
-                Drag-and-drop, real-time cursors, responsive layouts, loading
-                states. The details that make software feel alive.
             </p>
         </details>
         <details open id="detail-system">
@@ -531,7 +471,7 @@
                 <strong>crdt-rooms-demo</strong> — livetexts Integration Demo · Feb. 2026
             </summary>
             <p>
-                <a href="https://crdt-rooms.giteshsarvaiya.xyz">[live]</a> ·
+                <a href="https://crdt-rooms-demo.vercel.app/">[live]</a> ·
                 <a href="https://github.com/giteshsarvaiya/crdt-rooms-demo">[github]</a>
             </p>
             <ul class="incremental">
@@ -552,7 +492,7 @@
                 </li>
             </ul>
         </details>
-        <details open>
+        <details>
             <summary>
                 <strong>CRDT Foundation</strong> — Paper Implementation · Feb. 2026
             </summary>
@@ -571,7 +511,7 @@
                 <li>Stack: TypeScript</li>
             </ul>
         </details>
-        <details open>
+        <details>
             <summary>
                 <strong>AgentFlow</strong> — AI Workflow Generator · Sept. –
                 Oct. 2025
@@ -589,7 +529,7 @@
                 <li>Stack: Next.js, Composio, Express.js, Tailwind CSS</li>
             </ul>
         </details>
-        <details open>
+        <details>
             <summary>
                 <strong>Codegingerai</strong> — AI-powered GitHub PR Reviewer ·
                 2025
@@ -761,34 +701,83 @@
 
         <hr />
         <h2 id="skills">Technical Skills</h2>
-        <p>
-            <strong>Languages:</strong> JavaScript, TypeScript, Java, Python,
-            Ruby, HTML/CSS, SQL
-        </p>
-        <p>
-            <strong>Frontend:</strong> React.js, Next.js, Tailwind CSS, Radix
-            UI, ShadCN, Tiptap, TanStack Query
-        </p>
-        <p>
-            <strong>Backend:</strong> Node.js, Express.js, RubyOnRails, Hono.js,
-            WebSockets, REST APIs
-        </p>
-        <p>
-            <strong>Databases:</strong> PostgreSQL, MongoDB, Prisma, Supabase,
-            Cloudflare KV
-        </p>
-        <p>
-            <strong>Infra & Platforms:</strong> Cloudflare (Pages/Workers/KV),
-            AWS, Render, Appwrite, Git, GitHub, CI/CD, Docker
-        </p>
-        <p>
-            <strong>Paradigms:</strong> Local-first (YJS/CRDT), Real-time
-            collaboration, Design systems
-        </p>
-        <p>
-            <strong>Coding tools:</strong> Claude Code, Zed, Cursor, VS Code,
-            v0, Jira(Project Management)
-        </p>
+        <div class="skill-groups">
+            <div class="skill-group">
+                <span class="skill-label">Languages</span>
+                <div class="skill-pills">
+                    <span class="pill">JavaScript</span>
+                    <span class="pill">TypeScript</span>
+                    <span class="pill">Java</span>
+                    <span class="pill">Python</span>
+                    <span class="pill">Ruby</span>
+                    <span class="pill">HTML/CSS</span>
+                    <span class="pill">SQL</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <span class="skill-label">Frontend</span>
+                <div class="skill-pills">
+                    <span class="pill">React.js</span>
+                    <span class="pill">Next.js</span>
+                    <span class="pill">Tailwind CSS</span>
+                    <span class="pill">Radix UI</span>
+                    <span class="pill">ShadCN</span>
+                    <span class="pill">Tiptap</span>
+                    <span class="pill">TanStack Query</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <span class="skill-label">Backend</span>
+                <div class="skill-pills">
+                    <span class="pill">Node.js</span>
+                    <span class="pill">Express.js</span>
+                    <span class="pill">RubyOnRails</span>
+                    <span class="pill">Hono.js</span>
+                    <span class="pill">WebSockets</span>
+                    <span class="pill">REST APIs</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <span class="skill-label">Databases</span>
+                <div class="skill-pills">
+                    <span class="pill">PostgreSQL</span>
+                    <span class="pill">MongoDB</span>
+                    <span class="pill">Prisma</span>
+                    <span class="pill">Supabase</span>
+                    <span class="pill">Cloudflare KV</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <span class="skill-label">Infra</span>
+                <div class="skill-pills">
+                    <span class="pill">Cloudflare Workers</span>
+                    <span class="pill">AWS</span>
+                    <span class="pill">Docker</span>
+                    <span class="pill">CI/CD</span>
+                    <span class="pill">GitHub</span>
+                    <span class="pill">Render</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <span class="skill-label">Paradigms</span>
+                <div class="skill-pills">
+                    <span class="pill">Local-first</span>
+                    <span class="pill">CRDT / YJS</span>
+                    <span class="pill">Real-time collab</span>
+                    <span class="pill">Design systems</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <span class="skill-label">Tools</span>
+                <div class="skill-pills">
+                    <span class="pill">Claude Code</span>
+                    <span class="pill">Zed</span>
+                    <span class="pill">Cursor</span>
+                    <span class="pill">VS Code</span>
+                    <span class="pill">v0</span>
+                </div>
+            </div>
+        </div>
 
         <hr />
         <h2 id="achievements">Achievements</h2>
@@ -984,6 +973,27 @@
         </p>
         <hr />
 
+
+        <!-- Sidebar TOC (desktop only) -->
+        <aside id="toc-sidebar" aria-label="Page navigation">
+            <p class="toc-sidebar-label">On this page</p>
+            <ul class="toc-sidebar-list">
+                <li><a href="#now">Now</a></li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#what-i-do">What I Do</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Technical Skills</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#bookshelf">Bookshelf</a></li>
+                <li><a href="#fav-youtube">YouTube Channels</a></li>
+            </ul>
+            <div class="toc-sidebar-ext">
+                <a href="/blogs">Blog ↗</a>
+                <a href="/youtube">YouTube ↗</a>
+            </div>
+        </aside>
+
         <div class="scroll-progress" id="scrollProgress"></div>
         <button class="back-to-top" id="backToTop">Top</button>
         <button class="theme-toggle-fixed" id="themeToggle">Light</button>
@@ -1012,7 +1022,7 @@
         </div>
 
         <div class="debug-grid"></div>
-        <script src="/index.js"></script>
+        <script src="/index.js?v=2"></script>
         <script src="/terminal.js"></script>
 
         <!-- Animated signature -->

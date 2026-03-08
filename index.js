@@ -56,3 +56,28 @@ window.addEventListener("scroll", () => {
     }
   }
 });
+
+// ── Active TOC link on scroll ──────────────────────────────────────────────
+(function () {
+  const tocLinks = document.querySelectorAll('.toc-list a[href^="#"], .toc-sidebar-list a[href^="#"]');
+  if (!tocLinks.length) return;
+
+  const sectionIds = Array.from(tocLinks)
+    .map(a => a.getAttribute('href').slice(1))
+    .filter(id => document.getElementById(id));
+
+  function updateActiveTOC() {
+    let currentId = sectionIds[0];
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      if (el.getBoundingClientRect().top <= 130) currentId = id;
+    }
+    tocLinks.forEach(a => a.classList.remove('toc-active'));
+    const activeLink = document.querySelectorAll(`.toc-list a[href="#${currentId}"], .toc-sidebar-list a[href="#${currentId}"]`);
+    activeLink.forEach(a => a.classList.add('toc-active'));
+  }
+
+  window.addEventListener('scroll', updateActiveTOC, { passive: true });
+  updateActiveTOC();
+})();
