@@ -40,14 +40,6 @@
                                 >|</span
                             >
                         </p>
-                        <p class="status-line text-left margin-0">
-                            > currently building:
-                            <a
-                                href="https://www.youtube.com/watch?v=0d-qI1XoTFM&list=PL2nDMmj6ORYExJ1xcr_X_Vp1qe7HHWMUm"
-                                ><strong>Texty</strong></a
-                            >
-                            — local-first collaborative editor
-                        </p>
                     </td>
                 </tr>
                 <tr class="header-nav">
@@ -104,17 +96,8 @@
         </nav>
         <hr />
         <h2 id="now">Now</h2>
-        <p><em>Last updated: Feb 2026</em></p>
+        <p><em>Last updated: Mar 2026</em></p>
         <ul class="incremental">
-            <li>
-                Building
-                <a
-                    href="https://www.youtube.com/watch?v=0d-qI1XoTFM&list=PL2nDMmj6ORYExJ1xcr_X_Vp1qe7HHWMUm"
-                    >Texty</a
-                >
-                — a local-first, real-time collaborative text editor with
-                offline sync
-            </li>
             <li>
                 Leading CRM + WhatsApp campaign platform development at Innovun
                 Global
@@ -123,15 +106,6 @@
                 Writing about
                 <a href="/blogs">system design and fullstack engineering</a> on
                 Medium
-            </li>
-            <li>
-                Implementing
-                <a
-                    href="https://inria.hal.science/inria-00555588/document"
-                    >A comprehensive study of Convergent and Commutative
-                    Replicated Data Types</a
-                >
-                — foundational CRDT research by Shapiro et al.
             </li>
             <li>Reading: Refactoring UI, System Design Interview Vol. 1</li>
         </ul>
@@ -478,46 +452,124 @@
         <h2 id="projects">Projects</h2>
         <details open>
             <summary>
-                <strong>Texty</strong> — Local-first Collaborative Text Editor ·
-                Nov. 2025 – Present
+                <strong>Texty</strong> — Local-first Collaborative Document Editor · Mar. 2026
             </summary>
             <p>
-                <a href="https://www.youtube.com/@giteshsarvaiya"
-                    >[demo on youtube]</a
-                >
+                <a href="https://texty.giteshsarvaiya.xyz">[live]</a> ·
+                <a href="https://github.com/giteshsarvaiya/texty">[github]</a>
             </p>
             <ul class="incremental">
                 <li>
-                    Real-time collaborative editor with offline sync using
-                    CRDT-based conflict resolution (YJS)
+                    Collaborative document editor built on livetexts — no
+                    accounts, no sign-up
                 </li>
                 <li>
-                    Multiple users can edit the same document simultaneously
-                    while preserving local state, supporting offline usage, and
-                    seamlessly syncing once connectivity is restored
+                    Create a doc, share a join code, write together in real time
+                    with live colored cursors
                 </li>
                 <li>
-                    End-to-end ownership from the data model and sync engine to
-                    the UI and persistence layers
+                    Offline-first: edits survive tab closes and dropped
+                    connections via IndexedDB + Yjs CRDT sync
                 </li>
                 <li>
-                    Shareable documents with email invites, publishable, and
-                    editable by all members with permission
+                    One-click publish to a public URL — anyone can read it, no
+                    login required
                 </li>
                 <li>
-                    Stack: Next.js, TypeScript, YJS, Tiptap, TanStack Query,
-                    Tailwind CSS
+                    Stack: Next.js, TypeScript, Yjs, TipTap, Cloudflare Workers
                 </li>
             </ul>
             <p>
                 <em
-                    >Why this matters: It tackles some of the hardest problems
-                    in modern applications — distributed state management,
-                    real-time collaboration, conflict resolution, and UX under
-                    unreliable networks. This is deep systems thinking combined
-                    with real-world usability.</em
+                    >Why this matters: Built to understand how production sync
+                    services like Liveblocks actually work — from the CRDT math
+                    to the Durable Object architecture. Deep systems thinking
+                    shipped as a real product.</em
                 >
             </p>
+        </details>
+        <details open>
+            <summary>
+                <strong>livetexts</strong> — Self-hosted Liveblocks Alternative · npm package · Feb. 2026
+            </summary>
+            <p>
+                <a href="https://www.npmjs.com/package/livetexts">[npm]</a> ·
+                <a href="https://github.com/giteshsarvaiya/crdt-rooms">[github]</a>
+            </p>
+            <ul class="incremental">
+                <li>
+                    Open-source npm package for real-time collaborative rooms —
+                    presence, CRDT storage, collaborative text, and offline sync
+                </li>
+                <li>
+                    One Durable Object per room on Cloudflare Workers — the same
+                    architecture Liveblocks runs in production
+                </li>
+                <li>
+                    Yjs CRDT with bidirectional state-vector sync for lossless
+                    offline merge across tab closes and dropped connections
+                </li>
+                <li>
+                    JWT auth signed locally — no round-trip to a central auth
+                    service. Zero idle cost via WebSocket hibernation
+                </li>
+                <li>
+                    Stack: Cloudflare Workers, Durable Objects, Yjs, SQLite,
+                    TypeScript
+                </li>
+            </ul>
+            <p>
+                <em
+                    >Why this matters: Self-hostable means you own your
+                    infrastructure, your data, and your costs. The same real-time
+                    primitives Liveblocks sells — without the vendor lock-in.</em
+                >
+            </p>
+        </details>
+        <details open>
+            <summary>
+                <strong>crdt-rooms-demo</strong> — livetexts Integration Demo · Feb. 2026
+            </summary>
+            <p>
+                <a href="https://crdt-rooms.giteshsarvaiya.xyz">[live]</a> ·
+                <a href="https://github.com/giteshsarvaiya/crdt-rooms-demo">[github]</a>
+            </p>
+            <ul class="incremental">
+                <li>
+                    Reference Next.js app demonstrating a full livetexts
+                    integration end-to-end
+                </li>
+                <li>
+                    Collaborative text editor with live presence sidebar,
+                    real-time sync, and full JWT auth flow
+                </li>
+                <li>
+                    Shows room creation API, Yjs CRDT binding, and WebSocket
+                    connection lifecycle in practice
+                </li>
+                <li>
+                    Stack: Next.js, TypeScript, livetexts, Yjs, Tailwind CSS
+                </li>
+            </ul>
+        </details>
+        <details open>
+            <summary>
+                <strong>CRDT Foundation</strong> — Paper Implementation · Feb. 2026
+            </summary>
+            <p>
+                <a href="https://github.com/giteshsarvaiya/crdt-foundation-implementation">[github]</a>
+            </p>
+            <ul class="incremental">
+                <li>
+                    Implemented both op-based and state-based CRDTs from the
+                    foundational academic paper
+                </li>
+                <li>
+                    Built from scratch to deeply understand the concepts behind
+                    conflict-free data structures before building livetexts
+                </li>
+                <li>Stack: TypeScript</li>
+            </ul>
         </details>
         <details open>
             <summary>
