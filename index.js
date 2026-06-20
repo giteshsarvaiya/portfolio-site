@@ -59,38 +59,33 @@ window.addEventListener("scroll", () => {
 
 // ── Recommendations carousel ──────────────────────────────────────────────
 (function () {
-  var track = document.getElementById('recTrack');
-  var outer = document.getElementById('recOuter');
-  var dots = document.querySelectorAll('#recDots .rec-dot');
-  if (!track || !dots.length) return;
+  var cards = document.querySelectorAll('.rec-card');
+  var dots  = document.querySelectorAll('#recDots .rec-dot');
+  var prev  = document.getElementById('recPrev');
+  var next  = document.getElementById('recNext');
+  if (!cards.length) return;
 
-  var cards = track.querySelectorAll('.rec-card');
   var current = 0;
-  var total = dots.length;
+  var total   = cards.length;
   var timer;
-  var startX = 0;
-
-  function syncHeight() {
-    outer.style.height = cards[current].scrollHeight + 'px';
-  }
+  var startX  = 0;
 
   function goTo(index) {
+    cards[current].classList.remove('rec-card-active');
+    dots[current].classList.remove('rec-dot-active');
     current = ((index % total) + total) % total;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
-    dots.forEach(function (d, i) {
-      d.classList.toggle('rec-dot-active', i === current);
-    });
-    syncHeight();
+    cards[current].classList.add('rec-card-active');
+    dots[current].classList.add('rec-dot-active');
   }
 
   function startAuto() {
     timer = setInterval(function () { goTo(current + 1); }, 5000);
   }
 
-  function resetAuto() {
-    clearInterval(timer);
-    startAuto();
-  }
+  function resetAuto() { clearInterval(timer); startAuto(); }
+
+  if (prev) prev.addEventListener('click', function () { goTo(current - 1); resetAuto(); });
+  if (next) next.addEventListener('click', function () { goTo(current + 1); resetAuto(); });
 
   dots.forEach(function (dot) {
     dot.addEventListener('click', function () {
@@ -99,22 +94,38 @@ window.addEventListener("scroll", () => {
     });
   });
 
-  if (outer) {
-    outer.addEventListener('touchstart', function (e) {
+  // Show "View more" only when quote is actually clamped
+  cards.forEach(function (card) {
+    var quote = card.querySelector('.rec-quote');
+    var btn   = card.querySelector('.rec-expand-btn');
+    if (!quote || !btn) return;
+
+    function checkClamp() {
+      if (quote.classList.contains('rec-expanded')) return;
+      btn.hidden = quote.scrollHeight <= quote.clientHeight + 2;
+    }
+
+    checkClamp();
+    window.addEventListener('resize', checkClamp);
+
+    btn.addEventListener('click', function () {
+      var expanded = quote.classList.toggle('rec-expanded');
+      btn.textContent = expanded ? 'Hide' : 'View more';
+    });
+  });
+
+  // Swipe support
+  var section = document.getElementById('recSection');
+  if (section) {
+    section.addEventListener('touchstart', function (e) {
       startX = e.touches[0].clientX;
     }, { passive: true });
-
-    outer.addEventListener('touchend', function (e) {
+    section.addEventListener('touchend', function (e) {
       var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        goTo(diff > 0 ? current + 1 : current - 1);
-        resetAuto();
-      }
+      if (Math.abs(diff) > 48) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
     }, { passive: true });
   }
 
-  window.addEventListener('resize', syncHeight);
-  syncHeight();
   startAuto();
 })();
 
