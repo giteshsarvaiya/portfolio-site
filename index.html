@@ -65,43 +65,45 @@
             </tbody>
         </table>
 
-        <!-- Recommendations carousel -->
-        <section class="rec-section" id="recSection" aria-label="Recommendations">
-            <p class="rec-section-label">Recommendations</p>
-            <div class="rec-cards" id="recCards">
-                <div class="rec-card rec-card-active" data-index="0">
-                    <p class="rec-quote">"We worked with Gitesh on several projects. His motivation and dedication was amazing to witness. Gitesh takes initiative and doesn't shy away from complex problems. I'd happily work with him again!"</p>
-                    <button class="rec-expand-btn" hidden>View more</button>
-                    <div class="rec-author">
-                        <span class="rec-name">Steven Fabre</span>
-                        <span class="rec-role">CEO · Liveblocks — Realtime infrastructure for multiplayer apps</span>
-                    </div>
-                </div>
-                <div class="rec-card" data-index="1">
-                    <p class="rec-quote">"Gitesh consistently builds clean, responsive, and user-friendly interfaces. He quickly understands product intent, asks sharp clarifying questions, and translates design requirements into polished UI with minimal back and forth. He shows strong ownership of the frontend, caring about both technical quality and overall product experience."</p>
-                    <button class="rec-expand-btn" hidden>View more</button>
-                    <div class="rec-author">
-                        <span class="rec-name">Ayan Aggarwal</span>
-                        <span class="rec-role">Product Designer · Building Unimind — AI Products & Design Systems</span>
-                    </div>
-                </div>
-                <div class="rec-card" data-index="2">
-                    <p class="rec-quote">"He took ownership of features from end to end, approaching challenges with a positive attitude and a strong sense of responsibility. What stood out most was his ability to collaborate effectively across product, design, and engineering teams — communicating well, delivering reliably, and always willing to step up when needed."</p>
-                    <button class="rec-expand-btn" hidden>View more</button>
-                    <div class="rec-author">
-                        <span class="rec-name">Ng Joni</span>
-                        <span class="rec-role">Full-Stack Engineer · Pt. Benwin Indonesia</span>
-                    </div>
-                </div>
+        <!-- Testimonials -->
+        <section class="testimonials" id="testimonials">
+            <div class="testi-header">
+                <span class="testi-label">Recommendations</span>
+                <span class="testi-counter" id="testiCounter">1 / 3</span>
             </div>
-            <div class="rec-controls">
-                <button class="rec-arrow" id="recPrev" aria-label="Previous">←</button>
-                <div class="rec-dots" id="recDots">
-                    <button class="rec-dot rec-dot-active" data-index="0" aria-label="Recommendation 1"></button>
-                    <button class="rec-dot" data-index="1" aria-label="Recommendation 2"></button>
-                    <button class="rec-dot" data-index="2" aria-label="Recommendation 3"></button>
+
+            <div class="testi-list">
+                <article class="testi testi-active">
+                    <p class="testi-quote">"We worked with Gitesh on several projects. His motivation and dedication was amazing to witness. Gitesh takes initiative and doesn't shy away from complex problems. I'd happily work with him again!"</p>
+                    <footer class="testi-author">
+                        <strong class="testi-name">Steven Fabre</strong>
+                        <span class="testi-role">CEO · Liveblocks</span>
+                    </footer>
+                </article>
+                <article class="testi">
+                    <p class="testi-quote">"Gitesh consistently builds clean, responsive, and user-friendly interfaces. He quickly understands product intent, asks sharp clarifying questions, and translates design requirements into polished UI with minimal back and forth. He shows strong ownership of the frontend, caring about both technical quality and overall product experience."</p>
+                    <footer class="testi-author">
+                        <strong class="testi-name">Ayan Aggarwal</strong>
+                        <span class="testi-role">Product Designer · Building Unimind</span>
+                    </footer>
+                </article>
+                <article class="testi">
+                    <p class="testi-quote">"He took ownership of features from end to end, approaching challenges with a positive attitude and a strong sense of responsibility. What stood out most was his ability to collaborate effectively across product, design, and engineering teams — communicating well, delivering reliably, and always willing to step up when needed."</p>
+                    <footer class="testi-author">
+                        <strong class="testi-name">Ng Joni</strong>
+                        <span class="testi-role">Full-Stack Engineer · Pt. Benwin Indonesia</span>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="testi-controls">
+                <button class="testi-arrow" id="testiPrev" aria-label="Previous">←</button>
+                <div class="testi-dots">
+                    <button class="testi-dot testi-dot-active" data-i="0" aria-label="1"></button>
+                    <button class="testi-dot" data-i="1" aria-label="2"></button>
+                    <button class="testi-dot" data-i="2" aria-label="3"></button>
                 </div>
-                <button class="rec-arrow" id="recNext" aria-label="Next">→</button>
+                <button class="testi-arrow" id="testiNext" aria-label="Next">→</button>
             </div>
         </section>
 

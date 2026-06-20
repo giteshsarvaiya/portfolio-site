@@ -57,72 +57,45 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// ── Recommendations carousel ──────────────────────────────────────────────
+// ── Testimonials ──────────────────────────────────────────────────────────
 (function () {
-  var cards = document.querySelectorAll('.rec-card');
-  var dots  = document.querySelectorAll('#recDots .rec-dot');
-  var prev  = document.getElementById('recPrev');
-  var next  = document.getElementById('recNext');
-  if (!cards.length) return;
+  var items   = document.querySelectorAll('.testi');
+  var dots    = document.querySelectorAll('.testi-dot');
+  var counter = document.getElementById('testiCounter');
+  var prev    = document.getElementById('testiPrev');
+  var next    = document.getElementById('testiNext');
+  if (!items.length) return;
 
-  var current = 0;
-  var total   = cards.length;
+  var cur   = 0;
+  var total = items.length;
   var timer;
-  var startX  = 0;
+  var x0    = 0;
 
-  function goTo(index) {
-    cards[current].classList.remove('rec-card-active');
-    dots[current].classList.remove('rec-dot-active');
-    current = ((index % total) + total) % total;
-    cards[current].classList.add('rec-card-active');
-    dots[current].classList.add('rec-dot-active');
+  function show(i) {
+    items[cur].classList.remove('testi-active');
+    dots[cur].classList.remove('testi-dot-active');
+    cur = ((i % total) + total) % total;
+    items[cur].classList.add('testi-active');
+    dots[cur].classList.add('testi-dot-active');
+    if (counter) counter.textContent = (cur + 1) + ' / ' + total;
   }
 
-  function startAuto() {
-    timer = setInterval(function () { goTo(current + 1); }, 5000);
-  }
-
+  function startAuto() { timer = setInterval(function () { show(cur + 1); }, 5000); }
   function resetAuto() { clearInterval(timer); startAuto(); }
 
-  if (prev) prev.addEventListener('click', function () { goTo(current - 1); resetAuto(); });
-  if (next) next.addEventListener('click', function () { goTo(current + 1); resetAuto(); });
+  if (prev) prev.addEventListener('click', function () { show(cur - 1); resetAuto(); });
+  if (next) next.addEventListener('click', function () { show(cur + 1); resetAuto(); });
 
   dots.forEach(function (dot) {
-    dot.addEventListener('click', function () {
-      goTo(parseInt(dot.dataset.index, 10));
-      resetAuto();
-    });
+    dot.addEventListener('click', function () { show(+dot.dataset.i); resetAuto(); });
   });
 
-  // Show "View more" only when quote is actually clamped
-  cards.forEach(function (card) {
-    var quote = card.querySelector('.rec-quote');
-    var btn   = card.querySelector('.rec-expand-btn');
-    if (!quote || !btn) return;
-
-    function checkClamp() {
-      if (quote.classList.contains('rec-expanded')) return;
-      btn.hidden = quote.scrollHeight <= quote.clientHeight + 2;
-    }
-
-    checkClamp();
-    window.addEventListener('resize', checkClamp);
-
-    btn.addEventListener('click', function () {
-      var expanded = quote.classList.toggle('rec-expanded');
-      btn.textContent = expanded ? 'Hide' : 'View more';
-    });
-  });
-
-  // Swipe support
-  var section = document.getElementById('recSection');
+  var section = document.getElementById('testimonials');
   if (section) {
-    section.addEventListener('touchstart', function (e) {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
+    section.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
     section.addEventListener('touchend', function (e) {
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 48) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
+      var dx = x0 - e.changedTouches[0].clientX;
+      if (Math.abs(dx) > 44) { show(dx > 0 ? cur + 1 : cur - 1); resetAuto(); }
     }, { passive: true });
   }
 
