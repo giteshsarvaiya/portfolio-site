@@ -71,6 +71,25 @@ window.addEventListener("scroll", () => {
   var timer;
   var x0    = 0;
 
+  function evalExpand(item) {
+    var q   = item.querySelector('.testi-quote');
+    var btn = item.querySelector('.testi-expand');
+    if (!q || !btn) return;
+    if (q.classList.contains('testi-expanded')) return;
+    btn.style.display = q.scrollHeight > q.clientHeight + 2 ? 'inline-block' : 'none';
+  }
+
+  // Wire up each expand button once
+  items.forEach(function (item) {
+    var q   = item.querySelector('.testi-quote');
+    var btn = item.querySelector('.testi-expand');
+    if (!q || !btn) return;
+    btn.addEventListener('click', function () {
+      var expanded = q.classList.toggle('testi-expanded');
+      btn.textContent = expanded ? 'hide' : '...view more';
+    });
+  });
+
   function show(i) {
     items[cur].classList.remove('testi-active');
     dots[cur].classList.remove('testi-dot-active');
@@ -78,6 +97,7 @@ window.addEventListener("scroll", () => {
     items[cur].classList.add('testi-active');
     dots[cur].classList.add('testi-dot-active');
     if (counter) counter.textContent = (cur + 1) + ' / ' + total;
+    evalExpand(items[cur]);
   }
 
   function startAuto() { timer = setInterval(function () { show(cur + 1); }, 5000); }
@@ -90,27 +110,6 @@ window.addEventListener("scroll", () => {
     dot.addEventListener('click', function () { show(+dot.dataset.i); resetAuto(); });
   });
 
-  // View more / Hide per card
-  items.forEach(function (item) {
-    var quote = item.querySelector('.testi-quote');
-    var btn   = item.querySelector('.testi-expand');
-    if (!quote || !btn) return;
-
-    function evalClamp() {
-      if (quote.classList.contains('testi-quote-expanded')) return;
-      btn.hidden = quote.scrollHeight <= quote.clientHeight + 2;
-    }
-
-    evalClamp();
-    window.addEventListener('resize', evalClamp);
-
-    btn.addEventListener('click', function () {
-      var expanded = quote.classList.toggle('testi-quote-expanded');
-      btn.textContent = expanded ? 'Hide' : 'View more';
-      btn.setAttribute('aria-expanded', String(expanded));
-    });
-  });
-
   var section = document.getElementById('testimonials');
   if (section) {
     section.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
@@ -119,6 +118,9 @@ window.addEventListener("scroll", () => {
       if (Math.abs(dx) > 44) { show(dx > 0 ? cur + 1 : cur - 1); resetAuto(); }
     }, { passive: true });
   }
+
+  evalExpand(items[0]);
+  window.addEventListener('resize', function () { evalExpand(items[cur]); });
 
   startAuto();
 })();
