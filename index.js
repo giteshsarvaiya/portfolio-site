@@ -64,10 +64,15 @@ window.addEventListener("scroll", () => {
   var dots = document.querySelectorAll('#recDots .rec-dot');
   if (!track || !dots.length) return;
 
+  var cards = track.querySelectorAll('.rec-card');
   var current = 0;
   var total = dots.length;
   var timer;
   var startX = 0;
+
+  function syncHeight() {
+    outer.style.height = cards[current].scrollHeight + 'px';
+  }
 
   function goTo(index) {
     current = ((index % total) + total) % total;
@@ -75,6 +80,7 @@ window.addEventListener("scroll", () => {
     dots.forEach(function (d, i) {
       d.classList.toggle('rec-dot-active', i === current);
     });
+    syncHeight();
   }
 
   function startAuto() {
@@ -107,6 +113,8 @@ window.addEventListener("scroll", () => {
     }, { passive: true });
   }
 
+  window.addEventListener('resize', syncHeight);
+  syncHeight();
   startAuto();
 })();
 
