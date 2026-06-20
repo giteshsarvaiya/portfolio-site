@@ -1150,8 +1150,54 @@ body.terminal-open {
   font-size: 0.97rem;
   line-height: 1.75;
   color: var(--fg);
-  margin: 0;
+  margin: 0 0 0.4rem;
   word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.testi-quote.testi-quote-expanded {
+  display: block;
+  overflow: visible;
+}
+
+.testi-expand {
+  display: inline-block;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0 0 0.5rem;
+  height: auto;
+  min-width: unset;
+  width: auto;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 2px;
+  text-transform: none;
+  letter-spacing: 0;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.testi-expand:hover {
+  color: var(--fg);
+  background: none;
+  box-shadow: none;
+  text-decoration-color: var(--muted);
+}
+
+.testi-expand:active {
+  transform: none;
+}
+
+.testi-expand[hidden] {
+  display: none;
 }
 
 .testi-author {

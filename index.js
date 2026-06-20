@@ -90,6 +90,27 @@ window.addEventListener("scroll", () => {
     dot.addEventListener('click', function () { show(+dot.dataset.i); resetAuto(); });
   });
 
+  // View more / Hide per card
+  items.forEach(function (item) {
+    var quote = item.querySelector('.testi-quote');
+    var btn   = item.querySelector('.testi-expand');
+    if (!quote || !btn) return;
+
+    function evalClamp() {
+      if (quote.classList.contains('testi-quote-expanded')) return;
+      btn.hidden = quote.scrollHeight <= quote.clientHeight + 2;
+    }
+
+    evalClamp();
+    window.addEventListener('resize', evalClamp);
+
+    btn.addEventListener('click', function () {
+      var expanded = quote.classList.toggle('testi-quote-expanded');
+      btn.textContent = expanded ? 'Hide' : 'View more';
+      btn.setAttribute('aria-expanded', String(expanded));
+    });
+  });
+
   var section = document.getElementById('testimonials');
   if (section) {
     section.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
