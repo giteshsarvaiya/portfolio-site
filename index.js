@@ -57,6 +57,59 @@ window.addEventListener("scroll", () => {
   }
 });
 
+// ── Recommendations carousel ──────────────────────────────────────────────
+(function () {
+  var track = document.getElementById('recTrack');
+  var outer = document.getElementById('recOuter');
+  var dots = document.querySelectorAll('#recDots .rec-dot');
+  if (!track || !dots.length) return;
+
+  var current = 0;
+  var total = dots.length;
+  var timer;
+  var startX = 0;
+
+  function goTo(index) {
+    current = ((index % total) + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function (d, i) {
+      d.classList.toggle('rec-dot-active', i === current);
+    });
+  }
+
+  function startAuto() {
+    timer = setInterval(function () { goTo(current + 1); }, 5000);
+  }
+
+  function resetAuto() {
+    clearInterval(timer);
+    startAuto();
+  }
+
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      goTo(parseInt(dot.dataset.index, 10));
+      resetAuto();
+    });
+  });
+
+  if (outer) {
+    outer.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    outer.addEventListener('touchend', function (e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        goTo(diff > 0 ? current + 1 : current - 1);
+        resetAuto();
+      }
+    }, { passive: true });
+  }
+
+  startAuto();
+})();
+
 // ── Active TOC link on scroll ──────────────────────────────────────────────
 (function () {
   const tocLinks = document.querySelectorAll('.toc-list a[href^="#"], .toc-sidebar-list a[href^="#"]');

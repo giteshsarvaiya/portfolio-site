@@ -1093,6 +1093,109 @@ body.terminal-open {
   width: 100%;
 }
 
+/* ── Recommendations carousel ── */
+.rec-section {
+  background: var(--surface);
+  border: var(--border-thickness) solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.25rem 1rem;
+  margin-bottom: var(--line-height);
+  overflow: hidden;
+}
+
+.rec-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+  margin-top: 0;
+}
+
+.rec-section-label {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.rec-dots {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  margin: 0;
+}
+
+.rec-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  min-width: unset;
+  line-height: 0;
+  transition: background 0.2s;
+}
+
+.rec-dot.rec-dot-active {
+  background: var(--fg);
+}
+
+.rec-track-outer {
+  overflow: hidden;
+  margin: 0;
+}
+
+.rec-track {
+  display: flex;
+  transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+  will-change: transform;
+}
+
+.rec-card {
+  min-width: 100%;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.rec-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: var(--fg);
+  margin-top: 0;
+  margin-bottom: 0.9rem;
+}
+
+.rec-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+  border-top: var(--border-thickness) solid var(--border);
+  padding-top: 0.65rem;
+}
+
+.rec-name {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--fg);
+  margin: 0;
+}
+
+.rec-role {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0;
+}
+
 /* ══ RESPONSIVE ══ */
 
 /* ── Tablet ── */

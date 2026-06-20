@@ -65,6 +65,43 @@
             </tbody>
         </table>
 
+        <!-- Recommendations carousel -->
+        <section class="rec-section" aria-label="Recommendations">
+            <div class="rec-header">
+                <span class="rec-section-label">Recommendations</span>
+                <div class="rec-dots" id="recDots" aria-hidden="true">
+                    <button class="rec-dot rec-dot-active" data-index="0" aria-label="Recommendation 1"></button>
+                    <button class="rec-dot" data-index="1" aria-label="Recommendation 2"></button>
+                    <button class="rec-dot" data-index="2" aria-label="Recommendation 3"></button>
+                </div>
+            </div>
+            <div class="rec-track-outer" id="recOuter">
+                <div class="rec-track" id="recTrack">
+                    <div class="rec-card">
+                        <p class="rec-quote">"We worked with Gitesh on several projects. His motivation and dedication was amazing to witness. Gitesh takes initiative and doesn't shy away from complex problems. I'd happily work with him again!"</p>
+                        <div class="rec-author">
+                            <span class="rec-name">Steven Fabre</span>
+                            <span class="rec-role">CEO · Liveblocks — Realtime infrastructure for multiplayer apps</span>
+                        </div>
+                    </div>
+                    <div class="rec-card">
+                        <p class="rec-quote">"Gitesh consistently builds clean, responsive, and user-friendly interfaces. He quickly understands product intent, asks sharp clarifying questions, and translates design requirements into polished UI with minimal back and forth. He shows strong ownership of the frontend, caring about both technical quality and overall product experience."</p>
+                        <div class="rec-author">
+                            <span class="rec-name">Ayan Aggarwal</span>
+                            <span class="rec-role">Product Designer · Building Unimind — AI Products & Design Systems</span>
+                        </div>
+                    </div>
+                    <div class="rec-card">
+                        <p class="rec-quote">"He took ownership of features from end to end, approaching challenges with a positive attitude and a strong sense of responsibility. What stood out most was his ability to collaborate effectively across product, design, and engineering teams — communicating well, delivering reliably, and always willing to step up when needed."</p>
+                        <div class="rec-author">
+                            <span class="rec-name">Ng Joni</span>
+                            <span class="rec-role">Full-Stack Engineer · Pt. Benwin Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <nav id="TOC" role="doc-toc">
             <div class="toc-header">
                 <span class="toc-label">On this page</span>
@@ -91,15 +128,16 @@
             <p class="now-updated"><em>Last updated: Mar 2026</em></p>
             <ul class="incremental">
                 <li>
-                    Leading CRM + WhatsApp campaign platform development at Innovun
-                    Global
+                    Leading CRM + multichannel campaign platform development at
+                    Innovun Global as a technical team lead for F500 manufacturing
+                    client
                 </li>
                 <li>
                     Writing about
                     <a href="/blogs">system design and fullstack engineering</a> on
                     Medium
                 </li>
-                <li>Reading: Refactoring UI, System Design Interview Vol. 1</li>
+                <li>Reading: DDIA, OSTEP, and Alex Xu's System Design Vol. 1</li>
             </ul>
         </div>
 
@@ -395,7 +433,7 @@
                 <strong>Texty</strong> — Local-first Collaborative Document Editor · Mar. 2026
             </summary>
             <p>
-                <a href="https://texty.giteshsarvaiya.xyz">[live]</a> ·
+                <a href="https://texty.giteshsarvaiya.com">[live]</a> ·
                 <a href="https://github.com/giteshsarvaiya/texty">[github]</a>
             </p>
             <ul class="incremental">
@@ -471,7 +509,7 @@
                 <strong>crdt-rooms-demo</strong> — livetexts Integration Demo · Feb. 2026
             </summary>
             <p>
-                <a href="https://crdt-rooms-demo.vercel.app/">[live]</a> ·
+                <a href="https://crdt-rooms.giteshsarvaiya.com">[live]</a> ·
                 <a href="https://github.com/giteshsarvaiya/crdt-rooms-demo">[github]</a>
             </p>
             <ul class="incremental">
@@ -511,12 +549,75 @@
                 <li>Stack: TypeScript</li>
             </ul>
         </details>
+        <details open>
+            <summary>
+                <strong>SysDes</strong> — Realtime Collaborative System Design Canvas · 2025
+            </summary>
+            <p>
+                <a href="https://sysdes.giteshsarvaiya.com" target="_blank" rel="noopener">[live]</a> ·
+                <a href="https://www.youtube.com/watch?v=b1Y-QnttBU4" target="_blank" rel="noopener">[demo on youtube]</a>
+            </p>
+            <ul class="incremental">
+                <li>
+                    Realtime collaborative canvas for system design — draw, annotate, and iterate together with live presence
+                </li>
+                <li>
+                    Built-in chat with a cursor-based AI assistant that understands context from the canvas and helps reason through architecture decisions
+                </li>
+                <li>
+                    Simulation engine for modeling data flow, load, and failure scenarios directly on the diagram
+                </li>
+                <li>
+                    Designed for engineers who think visually — from napkin sketches to production-grade architecture diagrams
+                </li>
+            </ul>
+        </details>
+        <details>
+            <summary>
+                <strong>Excalidraw Clone</strong> — Collaborative Whiteboard · 2025
+            </summary>
+            <p>
+                <a href="https://excalidraw.giteshsarvaiya.com" target="_blank" rel="noopener">[live]</a>
+            </p>
+            <ul class="incremental">
+                <li>
+                    Full-featured Excalidraw clone with multiplayer collaboration powered by Liveblocks
+                </li>
+                <li>
+                    Hand-drawn aesthetic rendered via rough.js — freehand shapes, arrows, text, and sticky notes
+                </li>
+                <li>
+                    Live cursors, shared canvas state, and conflict-free real-time sync across connected users
+                </li>
+                <li>Stack: rough.js, Liveblocks, Canvas API</li>
+            </ul>
+        </details>
+        <details>
+            <summary>
+                <strong>Skribbl for Engineers</strong> — Multiplayer Drawing & Guessing Game · 2025
+            </summary>
+            <p>
+                <a href="https://skribbl.giteshsarvaiya.com" target="_blank" rel="noopener">[live]</a> ·
+                <a href="https://www.linkedin.com/posts/gitesh-sarvaiya-160b921b3_introducing-skribbl-for-software-engineers-activity-7458529409768001536-0xPP" target="_blank" rel="noopener">[demo on linkedin]</a>
+            </p>
+            <ul class="incremental">
+                <li>
+                    A Skribbl.io-style multiplayer game built specifically for software engineers and CS majors
+                </li>
+                <li>
+                    Word banks include CS concepts, data structures, system design terminology, and programming paradigms
+                </li>
+                <li>
+                    Real-time drawing canvas with WebSocket-based room management and live scoring
+                </li>
+            </ul>
+        </details>
         <details>
             <summary>
                 <strong>AgentFlow</strong> — AI Workflow Generator · Sept. –
                 Oct. 2025
             </summary>
-            <p><a href="https://agent-flow-theta.vercel.app/">[live]</a></p>
+            <p><a href="https://agent-flow.giteshsarvaiya.com">[live]</a></p>
             <ul class="incremental">
                 <li>
                     Chat-based AI interface that generates workflows across
