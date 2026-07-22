@@ -1,0 +1,15 @@
+# Gitesh Sarvaiya
+
+> Fullstack Engineer · System Thinker · Solution Engineer. Real-time software, collaborative editors, local-first systems, Gen AI products, CRMs.
+
+This site is a developer portfolio. Key pages for agents/LLMs to read:
+
+- [Resume](https://giteshsarvaiya.com/resume.md): Full work experience, projects, and technical skills in plain markdown.
+- [Portfolio](https://giteshsarvaiya.com/): Full site — testimonials, experience, projects, skills, bookshelf.
+- [Blog](https://giteshsarvaiya.com/blogs): Writing on system design and fullstack engineering.
+
+## Contact
+
+- Email: gitesh@giteshsarvaiya.com
+- GitHub: https://github.com/giteshsarvaiya
+- LinkedIn: https://www.linkedin.com/in/gitesh-sarvaiya-160b921b3/
