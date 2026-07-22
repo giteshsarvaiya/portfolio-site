@@ -15,7 +15,8 @@ Fullstack developer interested in real-time software, collaborative editors,
 locally-synced systems, Gen AI products, and CRMs. I build products end-to-end
 and care about the craft at every layer: the schema under the hood, the API
 contract in the middle, and the pixel on the screen. CS major in engineering,
-tech agnostic, most work lives in the JS/TS ecosystem.
+tech agnostic, most work lives in the JS/TS ecosystem. Open source contributor
+to [WordPress Gutenberg](https://github.com/WordPress/gutenberg).
 
 ## Experience
 
